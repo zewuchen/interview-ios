@@ -20,22 +20,22 @@ extension Bundle {
     }
     
     func fetchData<T: Decodable>(url: String, model: T.Type, completion:@escaping(T) -> (), failure:@escaping(Error) -> ()) {
-            guard let url = URL(string: url) else { return }
+        guard let url = URL(string: url) else { return }
             
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                guard let data = data else {
-                    // Se tiver erro, retornar o erro.
-                    if let error = error { failure(error) }
-                    return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else {
+                // Se tiver erro, retornar o erro.
+                if let error = error { failure(error) }
+                return }
                 
-                do {
-                    let serverData = try JSONDecoder().decode(T.self, from: data)
-                    // Se tiver sucesso, retornar dados do servidor.
-                    completion((serverData))
+            do {
+                let serverData = try JSONDecoder().decode(T.self, from: data)
+                // Se tiver sucesso, retornar dados do servidor.
+                completion((serverData))
                 } catch {
                     // Se tiver erro, retornar o erro.
                     failure(error)
                 }
-            }.resume()
+        }.resume()
     }
 }
