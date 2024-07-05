@@ -1,5 +1,0 @@
-No interview não foi perguntado se tinha Mac ou Iphone em mãos, infelizmente não sendo o caso e sendo um obstaculo de desenvolvimento swift para o teste.
-
-Sendo o caso não tenho como corretamente depurar o código ou roda-lo uma vez que a ferramenta mais proxima é Visual Studio Code com extensão Swift. Mesmo assim, tentei avançar o teste ao maximo que pude.
-
-Obrigada pela compreensão.
