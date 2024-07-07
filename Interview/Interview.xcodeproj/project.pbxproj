@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C37DFE832C34D4CE006CDECC /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFE822C34D4CE006CDECC /* MainViewModel.swift */; };
+		C37DFE862C34DD71006CDECC /* PokemonDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFE852C34DD71006CDECC /* PokemonDataModel.swift */; };
+		C37DFE892C34DE85006CDECC /* PokemonEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFE882C34DE85006CDECC /* PokemonEndpoint.swift */; };
+		C37DFE8B2C34E06B006CDECC /* PokemonNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFE8A2C34E06B006CDECC /* PokemonNetworkManager.swift */; };
+		C37DFE8D2C34E51D006CDECC /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFE8C2C34E51D006CDECC /* MainViewCell.swift */; };
+		C37DFE8F2C3637FB006CDECC /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFE8E2C3637FA006CDECC /* DetailViewModel.swift */; };
+		C37DFE912C36380F006CDECC /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37DFE902C36380F006CDECC /* DetailView.swift */; };
+		C3F1D88D2C386E890020A9A2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1D88C2C386E890020A9A2 /* MainView.swift */; };
 		CB0C639B2C2F0AC90089A6A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C639A2C2F0AC90089A6A4 /* AppDelegate.swift */; };
 		CB0C639D2C2F0AC90089A6A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C639C2C2F0AC90089A6A4 /* SceneDelegate.swift */; };
 		CB0C639F2C2F0AC90089A6A4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C639E2C2F0AC90089A6A4 /* MainViewController.swift */; };
@@ -36,6 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C37DFE822C34D4CE006CDECC /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		C37DFE852C34DD71006CDECC /* PokemonDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDataModel.swift; sourceTree = "<group>"; };
+		C37DFE882C34DE85006CDECC /* PokemonEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonEndpoint.swift; sourceTree = "<group>"; };
+		C37DFE8A2C34E06B006CDECC /* PokemonNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonNetworkManager.swift; sourceTree = "<group>"; };
+		C37DFE8C2C34E51D006CDECC /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
+		C37DFE8E2C3637FA006CDECC /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		C37DFE902C36380F006CDECC /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		C3F1D88C2C386E890020A9A2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CB0C63972C2F0AC90089A6A4 /* Interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Interview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0C639A2C2F0AC90089A6A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB0C639C2C2F0AC90089A6A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +92,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C37DFE802C34D4A8006CDECC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CB0C639E2C2F0AC90089A6A4 /* MainViewController.swift */,
+				C37DFE822C34D4CE006CDECC /* MainViewModel.swift */,
+				C37DFE8C2C34E51D006CDECC /* MainViewCell.swift */,
+				C3F1D88C2C386E890020A9A2 /* MainView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C37DFE812C34D4B3006CDECC /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				CB0C63CC2C2F11190089A6A4 /* DetailViewController.swift */,
+				C37DFE8E2C3637FA006CDECC /* DetailViewModel.swift */,
+				C37DFE902C36380F006CDECC /* DetailView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		C37DFE842C34DD63006CDECC /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				C37DFE852C34DD71006CDECC /* PokemonDataModel.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		C37DFE872C34DDFA006CDECC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C37DFE882C34DE85006CDECC /* PokemonEndpoint.swift */,
+				C37DFE8A2C34E06B006CDECC /* PokemonNetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		CB0C638E2C2F0AC90089A6A4 = {
 			isa = PBXGroup;
 			children = (
@@ -137,8 +191,10 @@
 		CB0C63CB2C2F0B6F0089A6A4 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				CB0C639E2C2F0AC90089A6A4 /* MainViewController.swift */,
-				CB0C63CC2C2F11190089A6A4 /* DetailViewController.swift */,
+				C37DFE872C34DDFA006CDECC /* Network */,
+				C37DFE842C34DD63006CDECC /* DataModel */,
+				C37DFE812C34D4B3006CDECC /* Detail */,
+				C37DFE802C34D4A8006CDECC /* Home */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -273,10 +329,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C37DFE892C34DE85006CDECC /* PokemonEndpoint.swift in Sources */,
+				C3F1D88D2C386E890020A9A2 /* MainView.swift in Sources */,
+				C37DFE8D2C34E51D006CDECC /* MainViewCell.swift in Sources */,
+				C37DFE832C34D4CE006CDECC /* MainViewModel.swift in Sources */,
+				C37DFE912C36380F006CDECC /* DetailView.swift in Sources */,
+				C37DFE8F2C3637FB006CDECC /* DetailViewModel.swift in Sources */,
 				CB0C639F2C2F0AC90089A6A4 /* MainViewController.swift in Sources */,
 				CB0C639B2C2F0AC90089A6A4 /* AppDelegate.swift in Sources */,
+				C37DFE8B2C34E06B006CDECC /* PokemonNetworkManager.swift in Sources */,
 				CB0C639D2C2F0AC90089A6A4 /* SceneDelegate.swift in Sources */,
 				CB0C63CD2C2F11190089A6A4 /* DetailViewController.swift in Sources */,
+				C37DFE862C34DD71006CDECC /* PokemonDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +514,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Interview/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -457,7 +522,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -465,7 +530,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.Interview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -482,6 +547,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Interview/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -489,7 +555,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -497,7 +563,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.Interview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -515,7 +581,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.InterviewTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -523,6 +590,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interview.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Interview";
+				TVOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Debug;
 		};
@@ -534,7 +602,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.InterviewTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -542,6 +611,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interview.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Interview";
+				TVOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Release;
 		};
