@@ -61,7 +61,9 @@ extension MainTableView: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as! MainViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as? MainViewCell else {
+            fatalError("Não pode encontrar célula PokemonCell")
+        }
         let pokemon = viewModel.pokemonList?.results[indexPath.row]
         let index = indexPath.row + 1
         cell.name.text = "\(index) - \(pokemon?.name ?? "")"
@@ -71,6 +73,8 @@ extension MainTableView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row + 1
+        guard let cell = tableView.cellForRow(at: indexPath) as? MainViewCell else { return }
+        cell.contentView.backgroundColor = viewModel.checkBackground(index)
         didSelectRow?(index)
     }
 }

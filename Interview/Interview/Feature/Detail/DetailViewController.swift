@@ -25,7 +25,6 @@ public class DetailViewController: UIViewController {
         }
         viewModel.getPokemonData(id: id)
         self.navigationItem.title = "Detalhes do Pokemon"
-        self.navigationItem.leftBarButtonItem?.title = "Voltar"
         self.navigationItem.leftBarButtonItem?.accessibilityLabel = "Voltar para a tela anterior e selecionar qual pokemon deseja saber os detalhes"
         self.navigationItem.leftBarButtonItem?.accessibilityHint = "Toque para voltar para a tela anterior"
         self.navigationItem.leftBarButtonItem?.isAccessibilityElement = true
