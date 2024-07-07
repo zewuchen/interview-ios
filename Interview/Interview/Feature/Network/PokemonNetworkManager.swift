@@ -47,7 +47,6 @@ class PokemonNetworkManager {
                 do {
                     let pokemonData = try JSONDecoder().decode(T.self, from: data)
                     
-                    // Cache the response
                     let cachedResponse = CachedURLResponse(response: response, data: data)
                     self.cache.storeCachedResponse(cachedResponse, for: URLRequest(url: url))
                     
