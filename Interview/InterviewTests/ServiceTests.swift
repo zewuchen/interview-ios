@@ -10,74 +10,111 @@ import XCTest
 
 class ServiceTests: XCTestCase {
 
-var service: Service!
-var urlSession: URLSessionMock!
-var cache: URLCache!
-var userDefaults: UserDefaults!
+    var service: Service!
+    var urlSessionMock: URLSessionMock!
+    var cacheMock: URLCacheMock!
+    var userDefaultsMock: UserDefaultsMock!
 
-override func setUp() {
-    super.setUp()
-    urlSession = URLSessionMock()
-    cache = URLCache(memoryCapacity: 10 * 1024 * 1024, diskCapacity: 50 * 1024 * 1024, diskPath: "pokemonCache")
-    userDefaults = UserDefaults(suiteName: "TestDefaults")
-    userDefaults.removePersistentDomain(forName: "TestDefaults")
-    service = Service(urlSession: urlSession, cache: cache, userDefaults: userDefaults)
-}
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        urlSessionMock = URLSessionMock()
+        cacheMock = URLCacheMock()
+        userDefaultsMock = UserDefaultsMock()
 
-override func tearDown() {
-    service = nil
-    super.tearDown()
-}
-
-func testFetchData_withValidData_shouldReturnDecodedObject() {
-    // Dado um JSON válido para ser retornado pela URLSessionMock
-    let jsonData = """
-    {
-        "name": "Pikachu"
+        service = Service(urlSession: urlSessionMock, cache: cacheMock, userDefaults: userDefaultsMock)
     }
-    """.data(using: .utf8)!
-    urlSession.data = jsonData
-    urlSession.response = HTTPURLResponse(url: URL(string: "https://pokeapi.co/api/v2/pokemon")!, statusCode: 200, httpVersion: nil, headerFields: nil)
-    urlSession.error = nil
-    
-    let expectation = self.expectation(description: "Fetching data")
-    
-    service.fetchData(from: "https://pokeapi.co/api/v2/pokemon") { (result: Result<PokemonModel, Error>) in
-        switch result {
-        case .success(let pokemon):
-            XCTAssertEqual(pokemon.name, "Pikachu")
-        case .failure(let error):
-            XCTFail("Expected success but got \(error) instead")
+
+    override func tearDownWithError() throws {
+        service = nil
+        urlSessionMock = nil
+        cacheMock = nil
+        userDefaultsMock = nil
+        try super.tearDownWithError()
+    }
+
+    func testGetPokemonSuccess() throws {
+        // Mock data
+        let pokemonData = PokemonModel(name: "Pikachu", url: "https://pokeapi.co/api/v2/pokemon/25")
+        let data = try JSONEncoder().encode(pokemonData)
+        
+        urlSessionMock.data = data
+
+        let expectation = self.expectation(description: "Fetch Pokemon")
+
+        service.getPokemon { result in
+            switch result {
+            case .success(let pokemon):
+                XCTAssertEqual(pokemon.name, "Pikachu")
+            case .failure(let error):
+                XCTFail("Expected success, got \(error) instead")
+            }
+            expectation.fulfill()
         }
-        expectation.fulfill()
+
+        waitForExpectations(timeout: 1, handler: nil)
+    }
+
+    // Mock Classes
+    class URLSessionMock: URLSession {
+        var data: Data?
+        var error: Error?
+
+        override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+            return URLSessionDataTaskMock {
+                completionHandler(self.data, nil, self.error)
+            }
+        }
+    }
+
+    class URLSessionDataTaskMock: URLSessionDataTask {
+        private let closure: () -> Void
+
+        init(closure: @escaping () -> Void) {
+            self.closure = closure
+        }
+
+        override func resume() {
+            closure()
+        }
+    }
+
+    class URLCacheMock: URLCache {
+        var cachedResponse: CachedURLResponse?
+
+        override func cachedResponse(for request: URLRequest) -> CachedURLResponse? {
+            return cachedResponse
+        }
+
+        override func storeCachedResponse(_ cachedResponse: CachedURLResponse, for request: URLRequest) {
+            self.cachedResponse = cachedResponse
+        }
+    }
+
+    class UserDefaultsMock: UserDefaults {
+        private var storage = [String: Any]()
+
+        override func data(forKey defaultName: String) -> Data? {
+            return storage[defaultName] as? Data
+        }
+
+        override func set(_ value: Any?, forKey defaultName: String) {
+            storage[defaultName] = value
+        }
+    }
+
+    // Models for testing
+    struct PokemonModel: Codable {
+        let name: String
+        let url: String
+    }
+
+    struct PokemonDetail: Codable {
+        let name: String
+        let weight: Int
     }
     
-    waitForExpectations(timeout: 5, handler: nil)
-}
-
-// Outros testes aqui...
-}
-
-class URLSessionMock: URLSession {
-var data: Data?
-var response: URLResponse?
-var error: Error?
-
-override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-    return URLSessionDataTaskMock {
-        completionHandler(self.data, self.response, self.error)
+    // Endpoints for testing
+    struct PokemonEndPoint {
+        static let getPokemonUrl = "https://pokeapi.co/api/v2/pokemon"
     }
-}
-}
-
-class URLSessionDataTaskMock: URLSessionDataTask {
-private let closure: () -> Void
-
-init(closure: @escaping () -> Void) {
-    self.closure = closure
-}
-
-override func resume() {
-    closure()
-}
 }
