@@ -22,12 +22,14 @@ final class InterviewUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
+    func testButtonDetailExists() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        app.tables/*@START_MENU_TOKEN@*/.staticTexts["4 - charmander"]/*[[".cells.staticTexts[\"4 - charmander\"]",".staticTexts[\"4 - charmander\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        if !app.buttons["squirtle"].exists {
+            XCTFail("Botão não encontrado")
+        }
     }
 
     func testLaunchPerformance() throws {
