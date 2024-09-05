@@ -6,13 +6,12 @@
 //
 
 import Foundation
-
 import UIKit
 
-public class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
 
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .blue
     }
 }
