@@ -34,10 +34,10 @@ final class PokemonDetailView: UIView {
         return imageView
     }()
     
-    private lazy var nameLabel = UILabel()
-    private lazy var numberLabel = UILabel()
-    private lazy var heightLabel = UILabel()
-    private lazy var weightLabel = UILabel()
+    private var nameLabel = UILabel()
+    private var numberLabel = UILabel()
+    private var heightLabel = UILabel()
+    private var weightLabel = UILabel()
 
     init() {
         super.init(frame: .zero)

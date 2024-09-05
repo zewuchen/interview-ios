@@ -48,11 +48,15 @@ class MainViewModel: MainViewModelProtocol {
     
     func didSelectPokemon(at index: Int) {
         guard index < pokemons.count else {
-            onError?(NSError(domain: "PokemonError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Error ao selecionar pokemon"]))
+            onError?(NSError(domain: "PokemonError",
+                             code: 1,
+                             userInfo: [NSLocalizedDescriptionKey: "Couldn't find it the pokemon"]))
             return
         }
         guard let url = pokemons[index].url else {
-            onError?(NSError(domain: "PokemonError", code: 0, userInfo: [NSLocalizedDescriptionKey: "URL do Pokémon inválida"]))
+            onError?(NSError(domain: "PokemonError",
+                             code: 0,
+                             userInfo: [NSLocalizedDescriptionKey: "URL of Pokémon is invalid"]))
             return
         }
         

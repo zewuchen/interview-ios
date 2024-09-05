@@ -14,7 +14,13 @@ class DetailViewModelTests: XCTestCase {
         let (sut, mockPokemonService, _) = makeSUT()
         let expectation = self.expectation(description: "Fetch pokemon details")
         
-        let mockPokemon = Pokemon(id: 1, name: "Bulbasaur", height: 7, weight: 69, url: URL(string: "https://pokeapi.co/api/v2/pokemon/1")!)
+        let mockPokemon = Pokemon(
+            id: 1,
+            name: "Bulbasaur",
+            height: 7,
+            weight: 69,
+            url: URL(string: "https://pokeapi.co/api/v2/pokemon/1")!
+        )
         mockPokemonService.mockPokemonDetails = mockPokemon
         
         sut.onPokemonUpdated = { pokemon in

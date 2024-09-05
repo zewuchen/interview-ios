@@ -13,7 +13,7 @@ class MainViewModelTests: XCTestCase {
         let (sut, mockPokemonService, _) = makeSUT()
 
         let expectation = self.expectation(description: "Fetch all pokemons")
-        let mockPokemons = [Pokemon(id: 1, name: "Bulbasaur", height: nil, weight: nil, url: URL(string: "https://pokeapi.co/api/v2/pokemon/1")!)]
+        let mockPokemons = mockPokemons()
         mockPokemonService.mockPokemonList = PokemonList(results: mockPokemons)
 
         sut.onPokemonsUpdated = { pokemons in
@@ -30,7 +30,7 @@ class MainViewModelTests: XCTestCase {
 
     func testDidSelectPokemon() {
         let (sut, mockPokemonService, coordinator) = makeSUT()
-        let mockPokemons = [Pokemon(id: 1, name: "Bulbasaur", height: nil, weight: nil, url: URL(string: "https://pokeapi.co/api/v2/pokemon/1")!)]
+        let mockPokemons = mockPokemons()
         mockPokemonService.mockPokemonList = PokemonList(results: mockPokemons)
 
         sut.fetchAllPokemons()
@@ -38,6 +38,17 @@ class MainViewModelTests: XCTestCase {
 
         XCTAssertTrue(coordinator.showPokemonDetailsCalled)
         XCTAssertEqual(coordinator.url, mockPokemons[0].url)
+    }
+    
+    func testDidSelectPokemon_WhenHasNoPokemons_ShouldCallError() {
+        let (sut, mockPokemonService, coordinator) = makeSUT()
+
+        sut.didSelectPokemon(at: 0)
+        
+        sut.onError = { error in
+            XCTAssertNotNil(error, "Error should not be nil")
+            XCTAssertEqual(error.localizedDescription, "Couldn't find it the pokemon")
+        }
     }
     
     func testFetchAllPokemonsError() {
@@ -67,5 +78,17 @@ class MainViewModelTests: XCTestCase {
         trackForMemoryLeaks(mockCoordinator, file: file, line: line)
 
         return (sut, mockPokemonService, mockCoordinator)
+    }
+    
+    private func mockPokemons() -> [Pokemon] {
+        [
+            Pokemon(
+                id: 1,
+                name: "Bulbasaur",
+                height: nil,
+                weight: nil,
+                url: URL(string: "https://pokeapi.co/api/v2/pokemon/1")!
+            )
+        ]
     }
 }
