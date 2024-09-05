@@ -40,11 +40,11 @@ final class MainViewController: UIViewController {
         view.backgroundColor = .systemBackground
         setupView()
         viewModel.setDelegate(self)
+        viewModel.fetchPokemons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.fetchPokemons()
         title = viewModel.getScreenTitle()
     }
 }
