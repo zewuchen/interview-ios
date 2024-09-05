@@ -8,16 +8,18 @@
 import Foundation
 import UIKit
 
-final class DetailViewController: UIViewController, ErrorHandling {
+final class DetailViewController: UIViewController, ErrorHandling, Loadable {
     
     // MARK: Variables
     var viewModel: DetailViewModelProtocol
+    var loadingManager: LoadingManaging
     
     // MARK: UI
     private let pokemonDetailView = PokemonDetailView()
     
-    init(viewModel: DetailViewModelProtocol) {
+    init(viewModel: DetailViewModelProtocol, loadingManager: LoadingManaging = LoadingManager()) {
         self.viewModel = viewModel
+        self.loadingManager = loadingManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,9 +34,7 @@ final class DetailViewController: UIViewController, ErrorHandling {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        bindViewModel()
-        viewModel.fetchPokemonDetail()
-        setupAccessibility()
+        setupLoad()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -42,13 +42,25 @@ final class DetailViewController: UIViewController, ErrorHandling {
         viewModel.coordinator?.onFinish()
     }
     
+    func setupLoad() {
+        bindViewModel()
+        showLoading()
+        viewModel.fetchPokemonDetail()
+
+        setupAccessibility()
+    }
+    
     private func bindViewModel() {
         viewModel.onPokemonUpdated = { [weak self] model in
-            self?.pokemonDetailView.configure(with: model)
+            DispatchQueue.main.async {
+                self?.hideLoading {
+                    self?.pokemonDetailView.configure(with: model)
+                }
+            }
         }
         
         viewModel.onError = { [weak self] error in
-            DispatchQueue.main.async {
+            self?.hideLoading {
                 self?.showError(error)
             }
         }

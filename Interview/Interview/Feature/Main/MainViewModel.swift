@@ -40,7 +40,8 @@ class MainViewModel: MainViewModelProtocol {
             case .success(let list):
                 self.pokemons = list.results
                 self.updateTable()
-            case .failure: break
+            case .failure(let error):
+                self.onError?(error)
             }
         }
     }

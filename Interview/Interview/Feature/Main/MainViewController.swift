@@ -7,16 +7,18 @@
 
 import UIKit
 
-final class MainViewController: UIViewController, ErrorHandling {
+final class MainViewController: UIViewController, ErrorHandling, Loadable {
     
     // MARK: Variables
     var viewModel: MainViewModelProtocol
+    var loadingManager: LoadingManaging
     
     // MARK: UI
     private let pokemonListView = PokemonListView()
     
-    init(viewModel: MainViewModelProtocol) {
+    init(viewModel: MainViewModelProtocol, loadingManager: LoadingManaging = LoadingManager()) {
         self.viewModel = viewModel
+        self.loadingManager = loadingManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -26,9 +28,7 @@ final class MainViewController: UIViewController, ErrorHandling {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        bindViewModel()
-        bindPokemonListView()
-        viewModel.fetchAllPokemons()
+        setupLoad()
     }
     
     // Depois de pesquisar, acabei relambrando pra que serve loadView,
@@ -37,15 +37,25 @@ final class MainViewController: UIViewController, ErrorHandling {
         self.view = pokemonListView
     }
     
+    func setupLoad() {
+        bindViewModel()
+        bindPokemonListView()
+        
+        showLoading()
+        viewModel.fetchAllPokemons()
+    }
+    
     private func bindViewModel() {
         viewModel.onPokemonsUpdated = { [weak self] model in
             DispatchQueue.main.async {
-                self?.updateTableView(with: model)
+                self?.hideLoading {
+                    self?.updateTableView(with: model)
+                }
             }
         }
         
         viewModel.onError = { [weak self] error in
-            DispatchQueue.main.async {
+            self?.hideLoading {
                 self?.showError(error)
             }
         }

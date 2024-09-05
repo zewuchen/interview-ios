@@ -37,7 +37,8 @@ class DetailViewModel: DetailViewModelProtocol {
             switch result {
             case .success(let pokemon):
                 self.handleSuccess(with: pokemon)
-            case .failure: break
+            case .failure(let error):
+                self.onError?(error)
             }
         }
     }
