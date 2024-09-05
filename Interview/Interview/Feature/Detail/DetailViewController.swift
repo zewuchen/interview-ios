@@ -34,6 +34,7 @@ final class DetailViewController: UIViewController {
         view.backgroundColor = .white
         bindViewModel()
         viewModel.fetchPokemonDetail()
+        setupAccessibility()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -43,9 +44,28 @@ final class DetailViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.onPokemonUpdated = { [weak self] model in
-            DispatchQueue.main.async {
-                self?.pokemonDetailView.configure(with: model)
-            }
+            self?.pokemonDetailView.configure(with: model)
+        }
+    }
+    
+    private func setupAccessibility() {
+        navigationItem.leftBarButtonItem?.accessibilityLabel = "Voltar para a lista de Pokémon"
+        navigationItem.leftBarButtonItem?.accessibilityHint = "Toque duas vezes para fechar a tela de detalhes e retornar à lista de Pokémon"
+        
+        
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(backButtonTapped))
+        navigationItem.leftBarButtonItem = backButton
+    }
+        
+    @objc private func backButtonTapped() {
+        let announcement = "Fechando detalhes do Pokémon. Voltando para a sua jornada na Pokédex!"
+        UIAccessibility.post(notification: .announcement, argument: announcement)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
         }
     }
 }

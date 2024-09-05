@@ -48,11 +48,16 @@ final class PokemonDetailView: UIView {
     }
     
     func configure(with model: PokemonDetailViewModel) {
-        imageView.image = model.image
-        nameLabel.text = "Nome: \(model.name)"
-        numberLabel.text = "Número: \(model.number)"
-        heightLabel.text = "Altura: \(model.height)"
-        weightLabel.text = "Peso: \(model.weight)"
+        DispatchQueue.main.async {
+            self.imageView.image = model.image
+            self.nameLabel.text = "Nome: \(model.name.capitalized)"
+            self.numberLabel.text = "Número: \(model.number)"
+            self.heightLabel.text = "Altura: \(model.height)"
+            self.weightLabel.text = "Peso: \(model.weight)"
+            
+            self.imageView.accessibilityLabel = model.name
+            self.imageView.accessibilityTraits = .button
+        }
     }
     
     required init?(coder: NSCoder) {
