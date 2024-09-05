@@ -8,25 +8,26 @@
 import Foundation
 
 protocol PokemonService {
-    func fetchPokemons(_ completion: @escaping ([PokemonList]) -> Void)
+    typealias PokemonListResult = Result<PokemonList,ServiceError>
+    func fetchPokemons(_ completion: @escaping (PokemonListResult) -> Void)
 }
 
 struct PokeApi: PokemonService {
-
+    
     private var serviceManager: APIServiceProtocol
 
     init(serviceManager: APIServiceProtocol = APIService()) {
         self.serviceManager = serviceManager
     }
 
-    func fetchPokemons(_ completion: @escaping ([PokemonList]) -> Void) {
+    func fetchPokemons(_ completion: @escaping (PokemonListResult) -> Void) {
         serviceManager.get(request: Router.allPokemons.getRequest,
-                           of: [PokemonList].self) { result in
+                           of: PokemonList.self) { result in
             switch result {
-            case .success(let pokemons):
-                completion(pokemons)
-            case .failure:
-                completion([])
+            case .success(let pokemonList):
+                completion(.success(pokemonList))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }

@@ -42,7 +42,7 @@ final class PokemonListCellView: UITableViewCell {
         configureConstraints()
     }
     
-    func setupCell(_ model: PokemonListCellModel) {
+    func setupCell(with model: PokemonListCellModel) {
         setupTitle(name: model.title)
         setupTypeBackgroundColor(model.type)
     }

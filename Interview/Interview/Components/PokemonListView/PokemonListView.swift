@@ -8,11 +8,13 @@
 import Foundation
 import UIKit
 
-class PokemonListView: UIView {
+final class PokemonListView: UIView {
 
     static let cellSize = CGFloat(42)
 
     private let cellIdentifier = "PokemonListCellIdentifier"
+    
+    private var pokemonsListModel = [PokemonListCellModel]()
 
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
@@ -34,7 +36,8 @@ class PokemonListView: UIView {
         configureConstraints()
     }
     
-    func configure() {
+    func configure(with model: [PokemonListCellModel]) {
+        self.pokemonsListModel = model
         tableView.reloadData()
     }
 
@@ -63,8 +66,7 @@ extension PokemonListView {
 extension PokemonListView: UITableViewDataSource {
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return 10
+        return pokemonsListModel.count
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -73,7 +75,8 @@ extension PokemonListView: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.setupCell(PokemonListCellModel(title: "Pokemon", type: .blue))
+        let model = pokemonsListModel[indexPath.row]
+        cell.setupCell(with: model)
 
         return cell
     }
