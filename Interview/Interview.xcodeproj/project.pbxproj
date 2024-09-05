@@ -303,6 +303,16 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		5342CFEC2C8A73BC00CFBC9D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5342CFDB2C8A21BC00CFBC9D /* UseCase */,
+				5342CFC52C8A004D00CFBC9D /* View */,
+				5342CFBE2C89CEA700CFBC9D /* ViewModel */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		CB0C638E2C2F0AC90089A6A4 = {
 			isa = PBXGroup;
 			children = (
@@ -372,9 +382,7 @@
 		CB0C63CB2C2F0B6F0089A6A4 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				5342CFDB2C8A21BC00CFBC9D /* UseCase */,
-				5342CFC52C8A004D00CFBC9D /* View */,
-				5342CFBE2C89CEA700CFBC9D /* ViewModel */,
+				5342CFEC2C8A73BC00CFBC9D /* Main */,
 				5342CF9E2C89C2CA00CFBC9D /* Work */,
 				CB0C63CC2C2F11190089A6A4 /* DetailViewController.swift */,
 			);
