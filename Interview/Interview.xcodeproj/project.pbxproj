@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		9219603C2C8A4F9E00F429F1 /* URLCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9219603B2C8A4F9E00F429F1 /* URLCacheManager.swift */; };
+		9219603F2C8A506600F429F1 /* MockAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9219603E2C8A506600F429F1 /* MockAPIService.swift */; };
+		921960442C8A50AA00F429F1 /* MockPokemonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921960432C8A50AA00F429F1 /* MockPokemonService.swift */; };
+		921960462C8A51F500F429F1 /* MockURLSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921960452C8A51F500F429F1 /* MockURLSessionDataTask.swift */; };
+		9219604A2C8A52B200F429F1 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921960492C8A52B200F429F1 /* MainViewModelTests.swift */; };
+		9219604C2C8A52CF00F429F1 /* MockMainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9219604B2C8A52CF00F429F1 /* MockMainCoordinator.swift */; };
+		9219604F2C8A542D00F429F1 /* MockDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9219604E2C8A542D00F429F1 /* MockDetailCoordinator.swift */; };
+		921960512C8A546D00F429F1 /* DetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921960502C8A546D00F429F1 /* DetailViewModelTests.swift */; };
 		92C5CA0B2C8A16350031CC9F /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CA072C8A16350031CC9F /* APIService.swift */; };
 		92C5CA0C2C8A16350031CC9F /* PokeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CA082C8A16350031CC9F /* PokeAPI.swift */; };
 		92C5CA0D2C8A16350031CC9F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CA092C8A16350031CC9F /* Router.swift */; };
@@ -56,6 +63,13 @@
 
 /* Begin PBXFileReference section */
 		9219603B2C8A4F9E00F429F1 /* URLCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLCacheManager.swift; sourceTree = "<group>"; };
+		9219603E2C8A506600F429F1 /* MockAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIService.swift; sourceTree = "<group>"; };
+		921960432C8A50AA00F429F1 /* MockPokemonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPokemonService.swift; sourceTree = "<group>"; };
+		921960452C8A51F500F429F1 /* MockURLSessionDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSessionDataTask.swift; sourceTree = "<group>"; };
+		921960492C8A52B200F429F1 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
+		9219604B2C8A52CF00F429F1 /* MockMainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainCoordinator.swift; sourceTree = "<group>"; };
+		9219604E2C8A542D00F429F1 /* MockDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDetailCoordinator.swift; sourceTree = "<group>"; };
+		921960502C8A546D00F429F1 /* DetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModelTests.swift; sourceTree = "<group>"; };
 		92C5CA072C8A16350031CC9F /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		92C5CA082C8A16350031CC9F /* PokeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokeAPI.swift; sourceTree = "<group>"; };
 		92C5CA092C8A16350031CC9F /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -120,6 +134,51 @@
 				9219603B2C8A4F9E00F429F1 /* URLCacheManager.swift */,
 			);
 			path = Cache;
+			sourceTree = "<group>";
+		};
+		9219603D2C8A505500F429F1 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				921960402C8A508900F429F1 /* Services */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		921960402C8A508900F429F1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9219603E2C8A506600F429F1 /* MockAPIService.swift */,
+				921960432C8A50AA00F429F1 /* MockPokemonService.swift */,
+				921960452C8A51F500F429F1 /* MockURLSessionDataTask.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		921960472C8A528300F429F1 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				9219604D2C8A541700F429F1 /* Detail */,
+				921960482C8A528800F429F1 /* Main */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		921960482C8A528800F429F1 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				921960492C8A52B200F429F1 /* MainViewModelTests.swift */,
+				9219604B2C8A52CF00F429F1 /* MockMainCoordinator.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		9219604D2C8A541700F429F1 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				9219604E2C8A542D00F429F1 /* MockDetailCoordinator.swift */,
+				921960502C8A546D00F429F1 /* DetailViewModelTests.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		92C5CA052C8A16230031CC9F /* Core */ = {
@@ -272,6 +331,8 @@
 		CB0C63B02C2F0ACC0089A6A4 /* InterviewTests */ = {
 			isa = PBXGroup;
 			children = (
+				921960472C8A528300F429F1 /* Features */,
+				9219603D2C8A505500F429F1 /* Mocks */,
 				CB0C63B12C2F0ACC0089A6A4 /* InterviewTests.swift */,
 			);
 			path = InterviewTests;
@@ -464,7 +525,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9219604F2C8A542D00F429F1 /* MockDetailCoordinator.swift in Sources */,
+				9219603F2C8A506600F429F1 /* MockAPIService.swift in Sources */,
+				921960462C8A51F500F429F1 /* MockURLSessionDataTask.swift in Sources */,
+				921960442C8A50AA00F429F1 /* MockPokemonService.swift in Sources */,
+				9219604C2C8A52CF00F429F1 /* MockMainCoordinator.swift in Sources */,
 				CB0C63B22C2F0ACC0089A6A4 /* InterviewTests.swift in Sources */,
+				9219604A2C8A52B200F429F1 /* MainViewModelTests.swift in Sources */,
+				921960512C8A546D00F429F1 /* DetailViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
