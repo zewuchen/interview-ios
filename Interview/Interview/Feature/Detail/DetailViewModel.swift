@@ -19,18 +19,51 @@ class DetailViewModel: DetailViewModelProtocol {
     //MARK: ViewModel Protocol
     var coordinator: DetailCoordinatorNavigation?
     var onPokemonUpdated: ((_ modelView: PokemonDetailViewModel) -> Void)?
+    var url: URL
 
     // MARK: Dependencies
     private let pokemonService: PokemonService
     
-    init(pokemonService: PokemonService) {
+    init(pokemonService: PokemonService, url: URL) {
         self.pokemonService = pokemonService
+        self.url = url
     }
     
     func fetchPokemonDetail() {
-        guard let image = UIImage(named: "bulbasaur") else {
+        pokemonService.fetchPokemonDetails(from: url) { result in
+            switch result {
+            case .success(let pokemon):
+                self.handleSuccess(with: pokemon)
+            case .failure: break
+            }
+        }
+    }
+    
+    func handleSuccess(with pokemon: Pokemon) {
+        guard let image = self.getPokemonImage(id: pokemon.id ?? 0) else {
             return
         }
-        self.onPokemonUpdated?(PokemonDetailViewModel(name: "Bulbasaur", number: "1", height: "7", weight: "69", image: image))
+        let model = PokemonDetailViewModel(
+            name: pokemon.name.capitalized,
+            number: "\(pokemon.id ?? 0)",
+            height: "\(pokemon.height ?? 0)",
+            weight: "\(pokemon.weight ?? 0)",
+            image: image
+        )
+
+        self.onPokemonUpdated?(model)
+    }
+}
+
+private extension DetailViewModel {
+    func getPokemonImage(id: Int) -> UIImage? {
+        let imageName: String
+        if id % 2 != 0 {
+            imageName = id % 5 == 0 ? "charmander" : "bulbasaur"
+        } else {
+            imageName = "squirtle"
+        }
+        
+        return UIImage(named: imageName)
     }
 }

@@ -16,14 +16,16 @@ final class DetailCoordinator: DetailCoordinatorNavigation {
     var childCoordinators = [Coordinator]()
     var presenter: UINavigationController
     weak var parentCoordinator: AppCoordinator?
+    var url: URL
 
-    init(presenter: UINavigationController) {
+    init(presenter: UINavigationController, url: URL) {
         self.presenter = presenter
+        self.url = url
     }
     
     func start() {
         let pokemonService = PokeApi()
-        let viewModel = DetailViewModel(pokemonService: pokemonService)
+        let viewModel = DetailViewModel(pokemonService: pokemonService, url: url)
         let viewController = DetailViewController(viewModel: viewModel)
         presenter.pushViewController(viewController, animated: true)
     }

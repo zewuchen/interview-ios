@@ -30,7 +30,7 @@ final class MainCoordinator: MainCoordinatorNavigation {
     }
     
     func showPokemonDetails(with url: URL) {
-        let coordinator = DetailCoordinator(presenter: presenter)
+        let coordinator = DetailCoordinator(presenter: presenter, url: url)
         coordinator.start()
     }
 }

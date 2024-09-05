@@ -9,7 +9,10 @@ import Foundation
 
 protocol PokemonService {
     typealias PokemonListResult = Result<PokemonList,ServiceError>
+    typealias PokemonDetailsResult = Result<Pokemon, ServiceError>
+
     func fetchPokemons(_ completion: @escaping (PokemonListResult) -> Void)
+    func fetchPokemonDetails(from url: URL, completion: @escaping (PokemonDetailsResult) -> Void)
 }
 
 struct PokeApi: PokemonService {
@@ -26,6 +29,19 @@ struct PokeApi: PokemonService {
             switch result {
             case .success(let pokemonList):
                 completion(.success(pokemonList))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func fetchPokemonDetails(from url: URL, completion: @escaping (PokemonDetailsResult) -> Void) {
+        let request = URLRequest(url: url)
+
+        serviceManager.get(request: request, of: Pokemon.self) { result in
+            switch result {
+            case .success(let pokemonDetail):
+                completion(.success(pokemonDetail))
             case .failure(let error):
                 completion(.failure(error))
             }

@@ -43,7 +43,9 @@ final class DetailViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.onPokemonUpdated = { [weak self] model in
-            self?.pokemonDetailView.configure(with: model)
+            DispatchQueue.main.async {
+                self?.pokemonDetailView.configure(with: model)
+            }
         }
     }
 }

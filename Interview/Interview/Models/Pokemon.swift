@@ -8,9 +8,9 @@
 import Foundation
 
 struct Pokemon: Codable {
-    let id: UUID?
+    let id: Int?
     let name: String
-    let height: String?
+    let height: Int?
     let weight: Int?
     let url: URL?
 }
