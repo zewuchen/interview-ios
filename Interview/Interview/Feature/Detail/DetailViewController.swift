@@ -6,13 +6,15 @@
 //
 
 import Foundation
-
 import UIKit
 
-public class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
     
     // MARK: Variables
     var viewModel: DetailViewModelProtocol
+    
+    // MARK: UI
+    private let pokemonDetailView = PokemonDetailView()
     
     init(viewModel: DetailViewModelProtocol) {
         self.viewModel = viewModel
@@ -22,14 +24,26 @@ public class DetailViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func loadView() {
+        self.view = pokemonDetailView
+    }
 
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        bindViewModel()
+        viewModel.fetchPokemonDetail()
     }
     
-    public override func viewDidDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         viewModel.coordinator?.onFinish()
+    }
+    
+    private func bindViewModel() {
+        viewModel.onPokemonUpdated = { [weak self] model in
+            self?.pokemonDetailView.configure(with: model)
+        }
     }
 }
