@@ -53,15 +53,13 @@ class LoadingManager: LoadingManaging {
             return
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
-                loadingView.alpha = 0
-            } completion: { finished in
-                guard finished else { return }
-                loadingView.removeFromSuperview()
-                self.loadingView = nil
-                completion?()
-            }
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+            loadingView.alpha = 0
+        } completion: { finished in
+            guard finished else { return }
+            loadingView.removeFromSuperview()
+            self.loadingView = nil
+            completion?()
         }
     }
 }
