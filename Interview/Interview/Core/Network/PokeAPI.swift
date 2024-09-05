@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol PokemonService {
+protocol PokemonServiceProtocol {
     typealias PokemonListResult = Result<PokemonList,ServiceError>
     typealias PokemonDetailsResult = Result<Pokemon, ServiceError>
 
@@ -15,7 +15,7 @@ protocol PokemonService {
     func fetchPokemonDetails(from url: URL, completion: @escaping (PokemonDetailsResult) -> Void)
 }
 
-struct PokeApi: PokemonService {
+struct PokeApi: PokemonServiceProtocol {
     
     private var serviceManager: APIServiceProtocol
 

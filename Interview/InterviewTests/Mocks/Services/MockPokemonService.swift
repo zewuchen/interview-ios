@@ -8,23 +8,25 @@
 import Foundation
 @testable import Interview
 
-class MockPokemonService: PokemonService {
-    var mockPokemonList: PokemonList?
-    var mockPokemonDetail: Pokemon?
+class MockPokemonService: PokemonServiceProtocol {
+    var mockError: Error?
 
-    func fetchPokemons(_ completion: @escaping (PokemonListResult) -> Void) {
-        if let mockPokemonList = mockPokemonList {
-            completion(.success(mockPokemonList))
-        } else {
-            completion(.failure(.emptyData))
+    var mockPokemonList: PokemonList?
+    var mockPokemonDetails: Pokemon?
+    
+    func fetchPokemons(_ completion: @escaping (Result<PokemonList, ServiceError>) -> Void) {
+        if let error = mockError {
+            completion(.failure(.requestFailed(description: error.localizedDescription)))
+        } else if let pokemonList = mockPokemonList {
+            completion(.success(pokemonList))
         }
     }
-
-    func fetchPokemonDetails(from url: URL, completion: @escaping (PokemonDetailsResult) -> Void) {
-        if let mockPokemonDetail = mockPokemonDetail {
-            completion(.success(mockPokemonDetail))
-        } else {
-            completion(.failure(.emptyData))
+    
+    func fetchPokemonDetails(from url: URL, completion: @escaping (Result<Pokemon, ServiceError>) -> Void) {
+        if let error = mockError {
+            completion(.failure(.requestFailed(description: error.localizedDescription)))
+        } else if let pokemonDetails = mockPokemonDetails {
+            completion(.success(pokemonDetails))
         }
     }
 }

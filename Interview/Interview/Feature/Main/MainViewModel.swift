@@ -28,9 +28,9 @@ class MainViewModel: MainViewModelProtocol {
     var onError: ((_ error: Error) -> Void)?
     
     // MARK: Dependencies
-    private let pokemonService: PokemonService
+    private let pokemonService: PokemonServiceProtocol
     
-    init(pokemonService: PokemonService) {
+    init(pokemonService: PokemonServiceProtocol) {
         self.pokemonService = pokemonService
     }
     

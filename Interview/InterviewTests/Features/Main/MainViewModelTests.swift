@@ -9,26 +9,9 @@ import XCTest
 @testable import Interview
 
 class MainViewModelTests: XCTestCase {
-    var sut: MainViewModel!
-    var mockPokemonService: MockPokemonService!
-    var mockCoordinator: MockMainCoordinator!
-
-    override func setUp() {
-        super.setUp()
-        mockPokemonService = MockPokemonService()
-        mockCoordinator = MockMainCoordinator()
-        sut = MainViewModel(pokemonService: mockPokemonService)
-        sut.coordinator = mockCoordinator
-    }
-
-    override func tearDown() {
-        sut = nil
-        mockPokemonService = nil
-        mockCoordinator = nil
-        super.tearDown()
-    }
-
     func testFetchAllPokemons() {
+        let (sut, mockPokemonService, _) = makeSUT()
+
         let expectation = self.expectation(description: "Fetch all pokemons")
         let mockPokemons = [Pokemon(id: 1, name: "Bulbasaur", height: nil, weight: nil, url: URL(string: "https://pokeapi.co/api/v2/pokemon/1")!)]
         mockPokemonService.mockPokemonList = PokemonList(results: mockPokemons)
@@ -41,17 +24,48 @@ class MainViewModelTests: XCTestCase {
         }
 
         sut.fetchAllPokemons()
-        waitForExpectations(timeout: 1.0, handler: nil)
+        
+        waitForExpectations(timeout: 1.0)
     }
 
     func testDidSelectPokemon() {
+        let (sut, mockPokemonService, coordinator) = makeSUT()
         let mockPokemons = [Pokemon(id: 1, name: "Bulbasaur", height: nil, weight: nil, url: URL(string: "https://pokeapi.co/api/v2/pokemon/1")!)]
         mockPokemonService.mockPokemonList = PokemonList(results: mockPokemons)
 
         sut.fetchAllPokemons()
         sut.didSelectPokemon(at: 0)
 
-        XCTAssertTrue(mockCoordinator.showPokemonDetailsCalled)
-        XCTAssertEqual(mockCoordinator.url, mockPokemons[0].url)
+        XCTAssertTrue(coordinator.showPokemonDetailsCalled)
+        XCTAssertEqual(coordinator.url, mockPokemons[0].url)
+    }
+    
+    func testFetchAllPokemonsError() {
+        let (sut, mockPokemonService, _) = makeSUT()
+        let expectation = self.expectation(description: "Fetch all pokemons error")
+        
+        mockPokemonService.mockError = NSError(domain: "TestError", code: 0, userInfo: nil)
+        
+        sut.onError = { error in
+            XCTAssertNotNil(error, "Error should not be nil")
+            expectation.fulfill()
+        }
+        
+        sut.fetchAllPokemons()
+        
+        waitForExpectations(timeout: 1.0)
+    }
+    
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut:MainViewModel, service: MockPokemonService, coordinator: MockMainCoordinator) {
+        let mockPokemonService = MockPokemonService()
+        let mockCoordinator = MockMainCoordinator()
+        let sut = MainViewModel(pokemonService: mockPokemonService)
+        sut.coordinator = mockCoordinator
+        
+        trackForMemoryLeaks(mockPokemonService, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(mockCoordinator, file: file, line: line)
+
+        return (sut, mockPokemonService, mockCoordinator)
     }
 }

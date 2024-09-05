@@ -24,10 +24,10 @@ class DetailViewModel: DetailViewModelProtocol {
     var onError: ((_ error: Error) -> Void)?
 
     // MARK: Dependencies
-    private let pokemonService: PokemonService
+    private let pokemonService: PokemonServiceProtocol
     var url: URL
     
-    init(pokemonService: PokemonService, url: URL) {
+    init(pokemonService: PokemonServiceProtocol, url: URL) {
         self.pokemonService = pokemonService
         self.url = url
     }
