@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct PokemonRow {
+struct PokemonRow: Equatable {
     var title: String?
     var background: UIColor
 }
