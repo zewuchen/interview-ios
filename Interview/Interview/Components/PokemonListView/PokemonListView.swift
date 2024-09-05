@@ -15,6 +15,7 @@ final class PokemonListView: UIView {
     private let cellIdentifier = "PokemonListCellIdentifier"
     
     private var pokemonsListModel = [PokemonListCellModel]()
+    var onPokemonSelected: ((Int) -> Void)?
 
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
@@ -89,6 +90,7 @@ extension PokemonListView: UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        onPokemonSelected?(indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

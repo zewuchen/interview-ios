@@ -9,14 +9,22 @@ import Foundation
 
 protocol MainViewModelProtocol {
     var pokemons: [Pokemon] { get }
+    var coordinator: MainCoordinatorNavigation? { get set }
+
     func fetchAllPokemons()
+    func didSelectPokemon(at index: Int)
+    
     var onPokemonsUpdated: ((_ pokemons: [PokemonListCellModel]) -> Void)? { get set }
 }
 
 class MainViewModel: MainViewModelProtocol {
+    
+    //MARK: ViewModel Protocol
+    var coordinator: MainCoordinatorNavigation?
     private(set) var pokemons: [Pokemon] = []
     var onPokemonsUpdated: ((_ pokemons: [PokemonListCellModel]) -> Void)?
     
+    // MARK: Dependencies
     private let pokemonService: PokemonService
     
     init(pokemonService: PokemonService) {
@@ -34,12 +42,24 @@ class MainViewModel: MainViewModelProtocol {
         }
     }
     
-    private func updateTable() {
+    func didSelectPokemon(at index: Int) {
+        guard index < pokemons.count else { return }
+        guard let url = pokemons[index].url else {
+            return
+        }
+        
+        coordinator?.showPokemonDetails(with: url)
+    }
+}
+
+// MARK: Utils
+private extension MainViewModel {
+    func updateTable() {
         let list = createCellsModel()
         self.onPokemonsUpdated?(list)
     }
     
-    private func createCellsModel() -> [PokemonListCellModel] {
+    func createCellsModel() -> [PokemonListCellModel] {
         let list = self.pokemons.enumerated().map { (index, pokemon) in
             let index = index + 1
             return PokemonListCellModel(title: "\(index) - \(pokemon.name)", type: getPokemonType(index))

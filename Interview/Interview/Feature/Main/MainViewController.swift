@@ -10,7 +10,7 @@ import UIKit
 final class MainViewController: UIViewController {
     
     // MARK: Variables
-    private var viewModel: MainViewModelProtocol
+    var viewModel: MainViewModelProtocol
     
     // MARK: UI
     private let pokemonListView = PokemonListView()
@@ -27,6 +27,7 @@ final class MainViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
+        bindPokemonListView()
         viewModel.fetchAllPokemons()
     }
     
@@ -41,6 +42,12 @@ final class MainViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.updateTableView(with: model)
             }
+        }
+    }
+    
+    private func bindPokemonListView() {
+        pokemonListView.onPokemonSelected = { [weak self] index in
+            self?.viewModel.didSelectPokemon(at: index)
         }
     }
     
