@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9219603C2C8A4F9E00F429F1 /* URLCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9219603B2C8A4F9E00F429F1 /* URLCacheManager.swift */; };
 		92C5CA0B2C8A16350031CC9F /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CA072C8A16350031CC9F /* APIService.swift */; };
 		92C5CA0C2C8A16350031CC9F /* PokeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CA082C8A16350031CC9F /* PokeAPI.swift */; };
 		92C5CA0D2C8A16350031CC9F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CA092C8A16350031CC9F /* Router.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9219603B2C8A4F9E00F429F1 /* URLCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLCacheManager.swift; sourceTree = "<group>"; };
 		92C5CA072C8A16350031CC9F /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		92C5CA082C8A16350031CC9F /* PokeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokeAPI.swift; sourceTree = "<group>"; };
 		92C5CA092C8A16350031CC9F /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -112,9 +114,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		921960382C8A4F7000F429F1 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				9219603B2C8A4F9E00F429F1 /* URLCacheManager.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		92C5CA052C8A16230031CC9F /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				921960382C8A4F7000F429F1 /* Cache */,
 				92C5CA2E2C8A25980031CC9F /* Error */,
 				92C5CA202C8A1C7E0031CC9F /* Coordinator */,
 				92C5CA062C8A162B0031CC9F /* Network */,
@@ -423,6 +434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9219603C2C8A4F9E00F429F1 /* URLCacheManager.swift in Sources */,
 				92C5CA262C8A1CA50031CC9F /* MainCoordinator.swift in Sources */,
 				92C5CA1B2C8A16F00031CC9F /* PokemonListCellView.swift in Sources */,
 				92C5CA192C8A16EB0031CC9F /* PokemonListView.swift in Sources */,
