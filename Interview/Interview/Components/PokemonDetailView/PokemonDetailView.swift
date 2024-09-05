@@ -72,7 +72,6 @@ extension PokemonDetailView {
         
         [nameLabel, numberLabel, heightLabel, weightLabel].forEach { label in
             contentStackView.addArrangedSubview(label)
-            label.font = UIFont.systemFont(ofSize: 16)
         }
     }
 

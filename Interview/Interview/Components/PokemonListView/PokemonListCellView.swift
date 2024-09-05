@@ -61,6 +61,7 @@ private extension PokemonListCellView {
     func setupTypeBackgroundColor(_ type: PokemonCellType) {
         switch type {
         case .blue:
+            titleLabel.textColor = .white
             backgroundColor = .blue
         case .yellow:
             backgroundColor = .yellow
