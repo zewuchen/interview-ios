@@ -11,18 +11,21 @@ import UIKit
 protocol DetailViewModelProtocol {
     var coordinator: DetailCoordinatorNavigation? { get set }
     var onPokemonUpdated: ((_ modelView: PokemonDetailViewModel) -> Void)? { get set }
-    
+    var onError: ((_ error: Error) -> Void)? { get set }
+
     func fetchPokemonDetail()
 }
 
 class DetailViewModel: DetailViewModelProtocol {
     //MARK: ViewModel Protocol
     var coordinator: DetailCoordinatorNavigation?
+
     var onPokemonUpdated: ((_ modelView: PokemonDetailViewModel) -> Void)?
-    var url: URL
+    var onError: ((_ error: Error) -> Void)?
 
     // MARK: Dependencies
     private let pokemonService: PokemonService
+    var url: URL
     
     init(pokemonService: PokemonService, url: URL) {
         self.pokemonService = pokemonService
@@ -41,6 +44,7 @@ class DetailViewModel: DetailViewModelProtocol {
     
     func handleSuccess(with pokemon: Pokemon) {
         guard let image = self.getPokemonImage(id: pokemon.id ?? 0) else {
+            onError?(NSError(domain: "PokemonError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Falha ao carregar imagem do Pokémon"]))
             return
         }
         let model = PokemonDetailViewModel(

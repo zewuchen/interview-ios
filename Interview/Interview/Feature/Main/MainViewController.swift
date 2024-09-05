@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MainViewController: UIViewController {
+final class MainViewController: UIViewController, ErrorHandling {
     
     // MARK: Variables
     var viewModel: MainViewModelProtocol
@@ -41,6 +41,12 @@ final class MainViewController: UIViewController {
         viewModel.onPokemonsUpdated = { [weak self] model in
             DispatchQueue.main.async {
                 self?.updateTableView(with: model)
+            }
+        }
+        
+        viewModel.onError = { [weak self] error in
+            DispatchQueue.main.async {
+                self?.showError(error)
             }
         }
     }

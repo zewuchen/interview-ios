@@ -15,6 +15,7 @@ protocol MainViewModelProtocol {
     func didSelectPokemon(at index: Int)
     
     var onPokemonsUpdated: ((_ pokemons: [PokemonListCellModel]) -> Void)? { get set }
+    var onError: ((_ error: Error) -> Void)? { get set }
 }
 
 class MainViewModel: MainViewModelProtocol {
@@ -22,7 +23,9 @@ class MainViewModel: MainViewModelProtocol {
     //MARK: ViewModel Protocol
     var coordinator: MainCoordinatorNavigation?
     private(set) var pokemons: [Pokemon] = []
+    
     var onPokemonsUpdated: ((_ pokemons: [PokemonListCellModel]) -> Void)?
+    var onError: ((_ error: Error) -> Void)?
     
     // MARK: Dependencies
     private let pokemonService: PokemonService
@@ -43,8 +46,12 @@ class MainViewModel: MainViewModelProtocol {
     }
     
     func didSelectPokemon(at index: Int) {
-        guard index < pokemons.count else { return }
+        guard index < pokemons.count else {
+            onError?(NSError(domain: "PokemonError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Error ao selecionar pokemon"]))
+            return
+        }
         guard let url = pokemons[index].url else {
+            onError?(NSError(domain: "PokemonError", code: 0, userInfo: [NSLocalizedDescriptionKey: "URL do Pokémon inválida"]))
             return
         }
         

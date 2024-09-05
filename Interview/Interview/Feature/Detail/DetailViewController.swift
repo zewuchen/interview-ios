@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController, ErrorHandling {
     
     // MARK: Variables
     var viewModel: DetailViewModelProtocol
@@ -45,6 +45,12 @@ final class DetailViewController: UIViewController {
     private func bindViewModel() {
         viewModel.onPokemonUpdated = { [weak self] model in
             self?.pokemonDetailView.configure(with: model)
+        }
+        
+        viewModel.onError = { [weak self] error in
+            DispatchQueue.main.async {
+                self?.showError(error)
+            }
         }
     }
     
