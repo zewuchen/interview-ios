@@ -12,19 +12,15 @@ final class PokemonRowRuleUseCaseTests: XCTestCase {
 
     private let sut: PokemonRowRuleUseCase = .init()
     
-    func test_isIndexEven_whenIsOdd_shouldReturnFalse() throws {
-        XCTAssertEqual(sut.isIndexEven(3), false)
+    func test_getRowBackground_whenIsOdd_shouldReturnFalse() throws {
+        XCTAssertEqual(sut.getRowBackground(index: 3), .systemBlue)
     }
     
-    func test_isIndexEven_whenIsEvent_shouldReturnTrue() throws {
-        XCTAssertEqual(sut.isIndexEven(4), true)
+    func test_getRowBackground_whenIsEven_and_whenIsMultiple10_shouldReturnTrue() throws {
+        XCTAssertEqual(sut.getRowBackground(index: 10), .systemRed)
     }
     
-    func test_isIndexMultipleOf10_whenIsMultipleOf10_shouldReturnTrue() throws {
-        XCTAssertEqual(sut.isIndexMultipleOf10(50), true)
-    }
-    
-    func test_isIndexMultipleOf10_whenIsNotMultipleOf10_shouldReturnTrue() throws {
-        XCTAssertEqual(sut.isIndexMultipleOf10(37), false)
+    func test_getRowBackground_whenIsEven_and_whenIsNotMultiple10_shouldReturnFalse() throws {
+        XCTAssertEqual(sut.getRowBackground(index: 14), .systemYellow)
     }
 }
