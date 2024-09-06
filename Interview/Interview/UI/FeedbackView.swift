@@ -52,6 +52,15 @@ final class FeedbackView: UIView {
         titleName.isHidden = false
         titleName.text = message
     }
+    
+    func attach(at view: UIView) {
+        NSLayoutConstraint.activate([
+            self.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            self.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            self.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            self.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
 }
 
 extension FeedbackView: ViewCode {
