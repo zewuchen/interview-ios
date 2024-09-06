@@ -20,7 +20,7 @@ protocol MainViewModelProtocol {
 protocol MainViewModelOutput: AnyObject {
     func willLoadPokemons(message: String)
     func loadedPokemonsWithSuccess()
-    func loadedPokemonsWithFailure()
+    func loadedPokemonsWithFailure(message: String)
 }
 
 final class MainViewModel {
@@ -55,7 +55,7 @@ extension MainViewModel: MainViewModelProtocol {
         var index: Int = 0
         pokemonWorker.fetchPokemons { [weak self] result in
             guard case .success(let response) = result, let results = response.results else {
-                self?.delegate?.loadedPokemonsWithFailure()
+                self?.delegate?.loadedPokemonsWithFailure(message: Constants.Strings.errorLoading)
                 return
             }
             
