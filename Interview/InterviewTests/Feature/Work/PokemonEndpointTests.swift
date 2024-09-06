@@ -10,7 +10,7 @@ import XCTest
 
 final class PokemonEndpointTests: XCTestCase {
 
-    func testExample() throws {
+    func test_init() throws {
         let sut: PokemonEndpoint = .init()
         
         XCTAssertEqual(sut.host, "https://pokeapi.co")
