@@ -115,11 +115,11 @@ private extension MainViewModel {
     }
     
     func getRowBackground(index: Int) -> UIColor {
-        guard pokemonRowRuleUseCase.isIndexEven(index) else {
+        guard pokemonRowRuleUseCase.isNumberEven(index) else {
             return .systemBlue
         }
         
-        guard pokemonRowRuleUseCase.isIndexMultipleOf(index, multiple: 10) else {
+        guard pokemonRowRuleUseCase.isNumberMultipleOf(index, multiple: 10) else {
             return .systemYellow
         }
         

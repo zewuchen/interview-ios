@@ -68,11 +68,11 @@ private extension DetailViewModel {
     func getImageAssetFromId(_ id: Int?) -> String {
         guard let id else { return "placeholder" }
         
-        guard !pokemonRowRuleUseCase.isIndexEven(id) else {
+        guard !pokemonRowRuleUseCase.isNumberEven(id) else {
             return "squirtle"
         }
         
-        guard !pokemonRowRuleUseCase.isIndexMultipleOf(id, multiple: 5) else {
+        guard !pokemonRowRuleUseCase.isNumberMultipleOf(id, multiple: 5) else {
             return "charmander"
         }
         

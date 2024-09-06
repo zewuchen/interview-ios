@@ -9,16 +9,16 @@ import Foundation
 import UIKit
 
 protocol MathHelperProtocool {
-    func isIndexEven(_ index: Int) -> Bool
-    func isIndexMultipleOf(_ index: Int, multiple: Int) -> Bool
+    func isNumberEven(_ number: Int) -> Bool
+    func isNumberMultipleOf(_ number: Int, multiple: Int) -> Bool
 }
 
 final class MathHelper: MathHelperProtocool {
-    func isIndexEven(_ index: Int) -> Bool {
-        return index % 2 == 0
+    func isNumberEven(_ number: Int) -> Bool {
+        return number % 2 == 0
     }
     
-    func isIndexMultipleOf(_ index: Int, multiple: Int) -> Bool {
-        return index % multiple == 0
+    func isNumberMultipleOf(_ number: Int, multiple: Int) -> Bool {
+        return number % multiple == 0
     }
 }
