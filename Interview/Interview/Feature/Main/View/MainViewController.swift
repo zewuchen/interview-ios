@@ -111,8 +111,9 @@ extension MainViewController: MainViewModelOutput {
         }
     }
     
-    func loadedPokemonsWithFailure() {
+    func loadedPokemonsWithFailure(message: String) {
         DispatchQueue.main.async {
+            self.feedbackView.showMessage(message)
         }
     }
     
