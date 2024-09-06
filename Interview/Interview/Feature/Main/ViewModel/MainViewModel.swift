@@ -11,10 +11,7 @@ import UIKit
 protocol MainViewModelProtocol {
     var forCellReuseIdentifier: String { get }
     
-    func getScreenTitle() -> String
-    func getNumberOfRows() -> Int
-    func getPokemonRow(from row: Int) -> PokemonRow?
-    func getPokemonDetailURL(from index: Int) -> URL?
+    func getPokemonList() -> [PokemonRow]
     func fetchPokemons()
     
     func setDelegate(_ delegate: MainViewModelOutput?)
@@ -27,10 +24,8 @@ protocol MainViewModelOutput: AnyObject {
 }
 
 final class MainViewModel {
-    // Using NSLock to avoid data race
-    private let nsLock: NSLock = .init()
     private let pokemonWorker: PokemonWorkerProtocol
-    private let mathHelper: MathHelperProtocool
+    private let pokemonRowBackgroundColorUserCase: PokemonRowBackgroundUseCaseProtocol
     
     private var pokemons: [PokemonRow] = []
     
@@ -42,10 +37,10 @@ final class MainViewModel {
     
     init(
         pokemonWorker: PokemonWorkerProtocol,
-        mathHelper: MathHelperProtocool
+        pokemonRowBackgroundColorUserCase: PokemonRowBackgroundUseCaseProtocol
     ) {
         self.pokemonWorker = pokemonWorker
-        self.mathHelper = mathHelper
+        self.pokemonRowBackgroundColorUserCase = pokemonRowBackgroundColorUserCase
     }
 }
 
@@ -55,7 +50,7 @@ extension MainViewModel: MainViewModelProtocol {
     }
     
     func fetchPokemons() {
-        delegate?.willLoadPokemons(message: "Carregando")
+        delegate?.willLoadPokemons(message: Constants.Strings.loading)
         
         var index: Int = 0
         pokemonWorker.fetchPokemons { [weak self] result in
@@ -70,28 +65,8 @@ extension MainViewModel: MainViewModelProtocol {
         }
     }
     
-    func getPokemonRow(from row: Int) -> PokemonRow? {
-        nsLock.lock()
-        let pokemon: PokemonRow? = pokemons.object(index: row)
-        nsLock.unlock()
-        
-        return pokemon
-    }
-    
-    func getPokemonDetailURL(from index: Int) -> URL? {
-        guard let row = getPokemonRow(from: index) else { return nil }
-        return row.url
-    }
-    
-    func getNumberOfRows() -> Int {
-        nsLock.lock()
-        let numberOfRows: Int = pokemons.count
-        nsLock.unlock()
-        return numberOfRows
-    }
-    
-    func getScreenTitle() -> String {
-        return "Pokemons"
+    func getPokemonList() -> [PokemonRow] {
+        return pokemons
     }
 }
 
@@ -101,10 +76,10 @@ private extension MainViewModel {
             guard let name = $0.name else { return }
             
             index += 1
-
+            
             pokemons.append(PokemonRow(
                 title: getRowTitle(index: index, name: name),
-                background: getRowBackground(index: index), 
+                background: getRowBackground(index: index),
                 url: getURL(from: $0.url)
             ))
         }
@@ -115,15 +90,7 @@ private extension MainViewModel {
     }
     
     func getRowBackground(index: Int) -> UIColor {
-        guard mathHelper.isNumberEven(index) else {
-            return .systemBlue
-        }
-        
-        guard mathHelper.isNumberMultipleOf(index, multiple: 10) else {
-            return .systemYellow
-        }
-        
-        return .systemRed
+        pokemonRowBackgroundColorUserCase.getRowBackground(index: index)
     }
     
     func getURL(from value: String?) -> URL? {
