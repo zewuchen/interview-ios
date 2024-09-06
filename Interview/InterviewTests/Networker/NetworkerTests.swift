@@ -17,7 +17,7 @@ final class NetworkerTests: XCTestCase {
     )
     
     func test_request_whenURLRequestIsNil_shouldGetFailure_and_shouldNotCallUrlSession() throws {
-        let dummyEndpoint: DummyEndpoint = .init(host: "", baseUrl: "")
+        let dummyEndpoint: DummyEndpoint = .init(host: " ", baseUrl: " invalid")
         
         sut.request(endpoint: dummyEndpoint) { result in
             let result: Result<DummyResponse, NetworkerError> = result
@@ -27,10 +27,10 @@ final class NetworkerTests: XCTestCase {
         XCTAssertTrue(urlSessionSpy.dataTaskVerifier.isEmpty)
         XCTAssertEqual(urlSessionDataTaskSpy.resumeVerifier, 0)
     }
-    
+
     func test_request_whenURLRequestIsNotNil_whenURLResponseIsNil_shouldGetFailure_and_shouldCallUrlSession() throws {
         let dummyEndpoint: DummyEndpoint = .init()
-        let dummyURLRequest: URLRequest = .init(url: try XCTUnwrap(URL(string: "dummy_host/dummy_baseUrl")))
+        let dummyURLRequest: URLRequest = .init(url: try XCTUnwrap(URL(string: "https://dummy_host/dummy_baseUrl")))
         urlSessionSpy.urlResponseToBeReturned = nil
         
         sut.request(endpoint: dummyEndpoint) { result in
@@ -43,7 +43,7 @@ final class NetworkerTests: XCTestCase {
     
     func test_request_whenURLRequestIsNotNil_whenURLResponseIsNotNil_whenStatusCodeLessThan200_shouldGetFailure_and_shouldCallUrlSession() throws {
         let dummyEndpoint: DummyEndpoint = .init()
-        let dummyURLRequest: URLRequest = .init(url: try XCTUnwrap(URL(string: "dummy_host/dummy_baseUrl")))
+        let dummyURLRequest: URLRequest = .init(url: try XCTUnwrap(URL(string: "https://dummy_host/dummy_baseUrl")))
         urlSessionSpy.urlResponseToBeReturned = try givemHTTPURLResponse(statusCode: 10)
         
         sut.request(endpoint: dummyEndpoint) { result in
@@ -56,7 +56,7 @@ final class NetworkerTests: XCTestCase {
     
     func test_request_whenURLRequestIsNotNil_whenURLResponseIsNotNil_whenStatusCodeGreatherThan300_shouldGetFailure_and_shouldCallUrlSession() throws {
         let dummyEndpoint: DummyEndpoint = .init()
-        let dummyURLRequest: URLRequest = .init(url: try XCTUnwrap(URL(string: "dummy_host/dummy_baseUrl")))
+        let dummyURLRequest: URLRequest = .init(url: try XCTUnwrap(URL(string: "https://dummy_host/dummy_baseUrl")))
         urlSessionSpy.urlResponseToBeReturned = try givemHTTPURLResponse(statusCode: 500)
         
         sut.request(endpoint: dummyEndpoint) { result in
@@ -69,7 +69,7 @@ final class NetworkerTests: XCTestCase {
     
     func test_request_whenURLRequestIsNotNil_whenURLResponseIsNotNil_whenStatusCode200_whenDataIsNil_shouldGetFailure_and_shouldCallUrlSession() throws {
         let dummyEndpoint: DummyEndpoint = .init()
-        let dummyURLRequest: URLRequest = .init(url: try XCTUnwrap(URL(string: "dummy_host/dummy_baseUrl")))
+        let dummyURLRequest: URLRequest = .init(url: try XCTUnwrap(URL(string: "https://dummy_host/dummy_baseUrl")))
         urlSessionSpy.urlResponseToBeReturned = try givemHTTPURLResponse(statusCode: 200)
         urlSessionSpy.dataToBeReturned = nil
         
@@ -84,7 +84,7 @@ final class NetworkerTests: XCTestCase {
     func test_request_whenURLRequestIsNotNil_whenURLResponseIsNotNil_whenStatusCode200_whenDataIsNotNil_shouldGetFailure_and_shouldCallUrlSession() throws {
         let dummyData: Data = try JSONEncoder().encode(DummyResponse(dummy: "dummy"))
         let dummyEndpoint: DummyEndpoint = .init()
-        let dummyURLRequest: URLRequest = .init(url: try XCTUnwrap(URL(string: "dummy_host/dummy_baseUrl")))
+        let dummyURLRequest: URLRequest = .init(url: try XCTUnwrap(URL(string: "https://dummy_host/dummy_baseUrl")))
         urlSessionSpy.urlResponseToBeReturned = try givemHTTPURLResponse(statusCode: 200)
         urlSessionSpy.dataToBeReturned = dummyData
         
@@ -99,7 +99,7 @@ final class NetworkerTests: XCTestCase {
     func test_request_whenURLRequestIsNotNil_whenURLResponseIsNotNil_whenStatusCode200_whenDataIsNotParse_shouldGetFailure_and_shouldCallUrlSession() throws {
         let dummyData: Data = try XCTUnwrap("".data(using: .utf8))
         let dummyEndpoint: DummyEndpoint = .init()
-        let dummyURLRequest: URLRequest = .init(url: try XCTUnwrap(URL(string: "dummy_host/dummy_baseUrl")))
+        let dummyURLRequest: URLRequest = .init(url: try XCTUnwrap(URL(string: "https://dummy_host/dummy_baseUrl")))
         urlSessionSpy.urlResponseToBeReturned = try givemHTTPURLResponse(statusCode: 200)
         urlSessionSpy.dataToBeReturned = dummyData
         
