@@ -89,7 +89,11 @@ extension MainViewController: UITableViewDataSource {
 
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let url = viewModel.getPokemonDetailURL(from: indexPath.row) else {
+            return
+        }
         
+        DetailRouter.show(from: navigationController, with: url)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
