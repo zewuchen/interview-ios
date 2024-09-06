@@ -16,7 +16,3 @@ protocol Endpoint {
     var baseUrl: String { get }
     var method: HTTPMethod { get }
 }
-
-protocol URLEndpoint: Endpoint {
-    var url: URL { get }
-}
