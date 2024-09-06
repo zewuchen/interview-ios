@@ -11,7 +11,6 @@ import XCTest
 
 final class NetworkerSpy<R: Decodable>: NetworkerProtocol {
     private(set) var requestVerifier: [Endpoint] = []
-    private(set) var requestDataVerifier: [URLEndpoint] = []
     var resultToBeReturned: Result<R, NetworkerError>?
     var resultDataToBeReturned: Result<Data, NetworkerError>?
     
@@ -28,19 +27,6 @@ final class NetworkerSpy<R: Decodable>: NetworkerProtocol {
         completion(result)
     }
     
-    func requestData(
-        endpoint: URLEndpoint,
-        completion: @escaping ((Result<Data, NetworkerError>) -> Void)
-    ) {
-        requestDataVerifier.append(endpoint)
-        guard let result = resultDataToBeReturned else {
-            XCTFail("resultDataToBeReturned must be casting with Result<T, NetworkerError>")
-            return
-        }
-        
-        completion(result)
-    }
-    
     func verifyArgumentsToRequest(
         endpoint: Endpoint,
         file: StaticString = #file,
@@ -49,15 +35,5 @@ final class NetworkerSpy<R: Decodable>: NetworkerProtocol {
         XCTAssertEqual(requestVerifier.first?.baseUrl, endpoint.baseUrl, file: file, line: line)
         XCTAssertEqual(requestVerifier.first?.host, endpoint.host, file: file, line: line)
         XCTAssertEqual(requestVerifier.first?.method, endpoint.method, file: file, line: line)
-    }
-    
-    func verifyArgumentsToRequestData(
-        endpoint: URLEndpoint,
-        file: StaticString = #file,
-        line: UInt = #line
-    ) {
-        XCTAssertEqual(requestDataVerifier.first?.url, endpoint.url, file: file, line: line)
-        XCTAssertEqual(requestDataVerifier.first?.host, endpoint.host, file: file, line: line)
-        XCTAssertEqual(requestDataVerifier.first?.method, endpoint.method, file: file, line: line)
     }
 }
