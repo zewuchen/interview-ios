@@ -45,7 +45,7 @@ final class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.backgroundColor = .systemBackground
-        title = viewModel.getScreenTitle()
+        title = Constants.Strings.pokemons
     }
 }
 
@@ -66,7 +66,7 @@ extension MainViewController: ViewCode {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.getNumberOfRows()
+        return viewModel.getPokemonList().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,7 +77,7 @@ extension MainViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        guard let row = viewModel.getPokemonRow(from: indexPath.row) else {
+        guard let row = viewModel.getPokemonList().object(index: indexPath.row) else {
             return UITableViewCell()
         }
         
@@ -89,7 +89,7 @@ extension MainViewController: UITableViewDataSource {
 
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = viewModel.getPokemonDetailURL(from: indexPath.row) else {
+        guard let url = viewModel.getPokemonList().object(index: indexPath.row)?.url else {
             return
         }
         
