@@ -16,4 +16,3 @@ struct PokemonCatalogResponse: Decodable, Equatable {
     let count: Int?
     let results: [PokemonEntityResponse]?
 }
-
