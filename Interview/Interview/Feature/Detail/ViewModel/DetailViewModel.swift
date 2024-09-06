@@ -15,24 +15,24 @@ protocol DetailViewModelProtocol {
 protocol DetailViewModelOutput: AnyObject {
     func willLoadPokemonInfo(message: String)
     func loadedPokemonInfoWithSuccess(detail: PokemonDetailRow)
-    func loadedPokemonsInfoFailure()
+    func loadedPokemonsInfoFailure(message: String)
 }
 
 final class DetailViewModel {
-    private let mathHelper: MathHelperProtocool
     private let pokemonDetailWorker: PokemonDetailWorker
     private let url: URL
+    private let pokemonDetailAssetRuleUseCase: PokemonDetailAssetRuleUseCaseProtocol
     
     weak var delegate: DetailViewModelOutput?
     
     init(
-        mathHelper: MathHelperProtocool,
         pokemonDetailWorker: PokemonDetailWorker,
-        url: URL
+        url: URL,
+        pokemonDetailAssetRuleUseCase: PokemonDetailAssetRuleUseCaseProtocol
     ) {
-        self.mathHelper = mathHelper
         self.pokemonDetailWorker = pokemonDetailWorker
         self.url = url
+        self.pokemonDetailAssetRuleUseCase = pokemonDetailAssetRuleUseCase
     }
 }
 
@@ -42,8 +42,7 @@ extension DetailViewModel: DetailViewModelProtocol {
     }
     
     func fetchDetail() {
-        delegate?.willLoadPokemonInfo(message: "Carregando")
-        
+        delegate?.willLoadPokemonInfo(message: Constants.Strings.loading)
         fetchPokemonInfoDetail()
     }
 }
@@ -53,29 +52,20 @@ private extension DetailViewModel {
         pokemonDetailWorker.fetchPokemonDetail(url: url) { [weak self] result in
             guard let self else { return }
             guard case .success(let detailresponse) = result else {
+                self.delegate?.loadedPokemonsInfoFailure(message: Constants.Strings.errorLoading)
                 return
             }
             
             self.delegate?.loadedPokemonInfoWithSuccess(
                 detail: PokemonDetailAdapter(
                     detailResponse: detailresponse,
-                    imageAsset: self.getImageAssetFromId(detailresponse.id)
+                    imageAsset: self.getImageAsset(detailresponse.id)
                 )
             )
         }
     }
     
-    func getImageAssetFromId(_ id: Int?) -> String {
-        guard let id else { return "placeholder" }
-        
-        guard !mathHelper.isNumberEven(id) else {
-            return "squirtle"
-        }
-        
-        guard !mathHelper.isNumberMultipleOf(id, multiple: 5) else {
-            return "charmander"
-        }
-        
-        return "bulbasaur"
+    func getImageAsset(_ id: Int?) -> String {
+        pokemonDetailAssetRuleUseCase.getImageAssetFromId(id)
     }
 }
