@@ -8,8 +8,6 @@
 import UIKit
 
 final class MainViewController: UIViewController {
-    private let loadingController: AlertLoadingController = .shared
-    private let alertController: AlertController = .shared
     private let heightCell: Double = 44
     private let viewModel: MainViewModelProtocol
     
@@ -104,23 +102,17 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: MainViewModelOutput {
     func loadedPokemonsWithSuccess() {
         DispatchQueue.main.async {
-            self.loadingController.stopAnimation()
             self.tableView.reloadData()
         }
     }
     
     func loadedPokemonsWithFailure() {
         DispatchQueue.main.async {
-            self.loadingController.stopAnimation()
         }
     }
     
     func willLoadPokemons(message: String) {
         DispatchQueue.main.async {
-            self.loadingController.startLoading(
-                from: self.navigationController,
-                title: message
-            )
         }
     }
 }
