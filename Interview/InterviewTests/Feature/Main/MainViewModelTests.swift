@@ -11,7 +11,7 @@ import XCTest
 final class MainViewModelTests: XCTestCase {
     private let mainViewModelOutputSpy: MainViewModelOutputSpy = .init()
     private let pokemonWorkSpy: PokemonWorkerSpy = .init()
-    private let pokemonRowRuleUseCaseSpy: PokemonRowRuleUseCaseSpy = .init()
+    private let pokemonRowRuleUseCaseSpy: MathHelperSpy = .init()
     private lazy var sut: MainViewModel = .init(
         pokemonWorker: pokemonWorkSpy,
         mathHelper: pokemonRowRuleUseCaseSpy
