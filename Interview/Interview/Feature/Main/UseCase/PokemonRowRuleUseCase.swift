@@ -9,27 +9,16 @@ import Foundation
 import UIKit
 
 protocol PokemonRowRuleUseCaseProtocol {
-    func getRowBackground(index: Int) -> UIColor
+    func isIndexEven(_ index: Int) -> Bool
+    func isIndexMultipleOf(_ index: Int, multiple: Int) -> Bool
 }
 
 final class PokemonRowRuleUseCase: PokemonRowRuleUseCaseProtocol {
-    func getRowBackground(index: Int) -> UIColor {
-        guard isIndexEven(index) else {
-            return .systemBlue
-        }
-        
-        guard isIndexMultipleOf10(index) else {
-            return .systemYellow
-        }
-        
-        return .systemRed
-    }
-    
-    private func isIndexEven(_ index: Int) -> Bool {
+    func isIndexEven(_ index: Int) -> Bool {
         return index % 2 == 0
     }
     
-    private func isIndexMultipleOf10(_ index: Int) -> Bool {
-        return index % 10 == 0
+    func isIndexMultipleOf(_ index: Int, multiple: Int) -> Bool {
+        return index % multiple == 0
     }
 }
