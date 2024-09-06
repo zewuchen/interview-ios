@@ -9,7 +9,6 @@ import Foundation
 
 protocol NetworkerProtocol {
     func request<T: Decodable>(endpoint: Endpoint, completion: @escaping ((Result<T, NetworkerError>) -> Void))
-    func requestData(endpoint: URLEndpoint, completion: @escaping ((Result<Data, NetworkerError>) -> Void))
 }
 
 final class Networker: NetworkerProtocol {
@@ -26,7 +25,7 @@ final class Networker: NetworkerProtocol {
     }
     
     func make(from endpoint: Endpoint) -> URLRequest? {
-        let urlString: String = "\(endpoint.host)\(endpoint.baseUrl)"
+        let urlString: String = "https://\(endpoint.host)\(endpoint.baseUrl)"
         
         guard let url = URL(string: urlString) else { return nil }
         
@@ -59,14 +58,6 @@ final class Networker: NetworkerProtocol {
         }
         
         dataTask.resume()
-    }
-    
-    func requestData(endpoint: URLEndpoint, completion: @escaping ((Result<Data, NetworkerError>) -> Void)) {
-        var request: URLRequest = .init(url: endpoint.url)
-        request.httpMethod = endpoint.method.rawValue
-        urlSession.dataTask(request: request) { data, response, _ in
-            self.handleResponse(response: response, data: data, completion: completion)
-        }.resume()
     }
     
     private func handleResponse(response: URLResponse?, data: Data?, completion: @escaping ((Result<Data, NetworkerError>) -> Void)) {
