@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 struct PokemonRow: Equatable {
-    var title: String?
-    var background: UIColor
+    let title: String?
+    let background: UIColor
+    let url: URL?
 }
