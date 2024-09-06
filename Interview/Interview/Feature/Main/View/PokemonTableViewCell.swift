@@ -45,7 +45,7 @@ extension PokemonTableViewCell: ViewCode {
         let label: UILabel = .init()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .body)
-        label.textColor = .label.adaptedTextColor()
+        label.textColor = .black
         return label
     }
 }
