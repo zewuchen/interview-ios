@@ -14,7 +14,7 @@ final class MainViewModelTests: XCTestCase {
     private let pokemonRowRuleUseCaseSpy: PokemonRowRuleUseCaseSpy = .init()
     private lazy var sut: MainViewModel = .init(
         pokemonWorker: pokemonWorkSpy,
-        pokemonRowRuleUseCase: pokemonRowRuleUseCaseSpy
+        mathHelper: pokemonRowRuleUseCaseSpy
     )
     
     override func setUpWithError() throws {

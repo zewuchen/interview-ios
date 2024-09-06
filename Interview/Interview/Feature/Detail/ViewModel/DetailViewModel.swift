@@ -19,18 +19,18 @@ protocol DetailViewModelOutput: AnyObject {
 }
 
 final class DetailViewModel {
-    private let pokemonRowRuleUseCase: MathHelperProtocool
+    private let mathHelper: MathHelperProtocool
     private let pokemonDetailWorker: PokemonDetailWorker
     private let url: URL
     
     weak var delegate: DetailViewModelOutput?
     
     init(
-        pokemonRowRuleUseCase: MathHelperProtocool,
+        mathHelper: MathHelperProtocool,
         pokemonDetailWorker: PokemonDetailWorker,
         url: URL
     ) {
-        self.pokemonRowRuleUseCase = pokemonRowRuleUseCase
+        self.mathHelper = mathHelper
         self.pokemonDetailWorker = pokemonDetailWorker
         self.url = url
     }
@@ -68,11 +68,11 @@ private extension DetailViewModel {
     func getImageAssetFromId(_ id: Int?) -> String {
         guard let id else { return "placeholder" }
         
-        guard !pokemonRowRuleUseCase.isNumberEven(id) else {
+        guard !mathHelper.isNumberEven(id) else {
             return "squirtle"
         }
         
-        guard !pokemonRowRuleUseCase.isNumberMultipleOf(id, multiple: 5) else {
+        guard !mathHelper.isNumberMultipleOf(id, multiple: 5) else {
             return "charmander"
         }
         

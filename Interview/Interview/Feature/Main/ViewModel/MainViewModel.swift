@@ -30,7 +30,7 @@ final class MainViewModel {
     // Using NSLock to avoid data race
     private let nsLock: NSLock = .init()
     private let pokemonWorker: PokemonWorkerProtocol
-    private let pokemonRowRuleUseCase: MathHelperProtocool
+    private let mathHelper: MathHelperProtocool
     
     private var pokemons: [PokemonRow] = []
     
@@ -42,10 +42,10 @@ final class MainViewModel {
     
     init(
         pokemonWorker: PokemonWorkerProtocol,
-        pokemonRowRuleUseCase: MathHelperProtocool
+        mathHelper: MathHelperProtocool
     ) {
         self.pokemonWorker = pokemonWorker
-        self.pokemonRowRuleUseCase = pokemonRowRuleUseCase
+        self.mathHelper = mathHelper
     }
 }
 
@@ -115,11 +115,11 @@ private extension MainViewModel {
     }
     
     func getRowBackground(index: Int) -> UIColor {
-        guard pokemonRowRuleUseCase.isNumberEven(index) else {
+        guard mathHelper.isNumberEven(index) else {
             return .systemBlue
         }
         
-        guard pokemonRowRuleUseCase.isNumberMultipleOf(index, multiple: 10) else {
+        guard mathHelper.isNumberMultipleOf(index, multiple: 10) else {
             return .systemYellow
         }
         
