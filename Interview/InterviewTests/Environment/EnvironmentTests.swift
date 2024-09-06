@@ -13,6 +13,6 @@ final class EnvironmentTests: XCTestCase {
     private let sut: Environment.Type = Environment.self
     
     func test_host_pokeapi_shouldReturnExpectedValue() throws {
-        XCTAssertEqual(sut.Host.pokeapi.host, "https://pokeapi.co")
+        XCTAssertEqual(sut.Host.pokeapi.host, "pokeapi.co")
     }
 }
