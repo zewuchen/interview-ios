@@ -18,7 +18,6 @@
 		5342CFAA2C89C60600CFBC9D /* UrlSessionSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFA92C89C60600CFBC9D /* UrlSessionSpy.swift */; };
 		5342CFAC2C89C64600CFBC9D /* NetworkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFAB2C89C64600CFBC9D /* NetworkerTests.swift */; };
 		5342CFAF2C89C82300CFBC9D /* DummyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFAE2C89C82300CFBC9D /* DummyEndpoint.swift */; };
-		5342CFB12C89C84A00CFBC9D /* DummyURLEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFB02C89C84A00CFBC9D /* DummyURLEndpoint.swift */; };
 		5342CFB32C89C86300CFBC9D /* DummyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFB22C89C86300CFBC9D /* DummyResponse.swift */; };
 		5342CFB62C89C9D500CFBC9D /* EnvironmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFB52C89C9D500CFBC9D /* EnvironmentTests.swift */; };
 		5342CFB92C89CA3D00CFBC9D /* HTTPMethodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFB82C89CA3D00CFBC9D /* HTTPMethodTests.swift */; };
@@ -28,7 +27,6 @@
 		5342CFC72C8A008200CFBC9D /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFC62C8A008200CFBC9D /* PokemonTableViewCell.swift */; };
 		5342CFCA2C8A00A600CFBC9D /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFC92C8A00A600CFBC9D /* ViewCode.swift */; };
 		5342CFCC2C8A00D200CFBC9D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFCB2C8A00D200CFBC9D /* Constants.swift */; };
-		5342CFCF2C8A0C0400CFBC9D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFCE2C8A0C0400CFBC9D /* UIColor+Extension.swift */; };
 		5342CFD12C8A16FB00CFBC9D /* PokemonWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFD02C8A16FB00CFBC9D /* PokemonWorkerTests.swift */; };
 		5342CFD32C8A173700CFBC9D /* NetworkerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFD22C8A173700CFBC9D /* NetworkerSpy.swift */; };
 		5342CFD52C8A179400CFBC9D /* EnvironmentStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFD42C8A179400CFBC9D /* EnvironmentStub.swift */; };
@@ -41,6 +39,11 @@
 		5342CFE72C8A5F8E00CFBC9D /* MainViewModelOutputSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFE62C8A5F8E00CFBC9D /* MainViewModelOutputSpy.swift */; };
 		5342CFE92C8A666600CFBC9D /* PokemonRowRuleUseCaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFE82C8A666600CFBC9D /* PokemonRowRuleUseCaseSpy.swift */; };
 		5342CFEB2C8A6DB200CFBC9D /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFEA2C8A6DB200CFBC9D /* AlertController.swift */; };
+		5342CFF02C8A74B000CFBC9D /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFEF2C8A74B000CFBC9D /* DetailViewModel.swift */; };
+		5342CFF22C8A753800CFBC9D /* PokemonDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFF12C8A753800CFBC9D /* PokemonDetailResponse.swift */; };
+		5342CFF52C8A7A4700CFBC9D /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFF42C8A7A4700CFBC9D /* DetailRouter.swift */; };
+		5342CFF72C8A88F300CFBC9D /* PokemonDetailRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFF62C8A88F300CFBC9D /* PokemonDetailRow.swift */; };
+		5342CFF92C8A8C1600CFBC9D /* PokemonInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CFF82C8A8C1600CFBC9D /* PokemonInfoView.swift */; };
 		CB0C639B2C2F0AC90089A6A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C639A2C2F0AC90089A6A4 /* AppDelegate.swift */; };
 		CB0C639D2C2F0AC90089A6A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C639C2C2F0AC90089A6A4 /* SceneDelegate.swift */; };
 		CB0C639F2C2F0AC90089A6A4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C639E2C2F0AC90089A6A4 /* MainViewController.swift */; };
@@ -81,7 +84,6 @@
 		5342CFA92C89C60600CFBC9D /* UrlSessionSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSessionSpy.swift; sourceTree = "<group>"; };
 		5342CFAB2C89C64600CFBC9D /* NetworkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkerTests.swift; sourceTree = "<group>"; };
 		5342CFAE2C89C82300CFBC9D /* DummyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyEndpoint.swift; sourceTree = "<group>"; };
-		5342CFB02C89C84A00CFBC9D /* DummyURLEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyURLEndpoint.swift; sourceTree = "<group>"; };
 		5342CFB22C89C86300CFBC9D /* DummyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyResponse.swift; sourceTree = "<group>"; };
 		5342CFB52C89C9D500CFBC9D /* EnvironmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentTests.swift; sourceTree = "<group>"; };
 		5342CFB82C89CA3D00CFBC9D /* HTTPMethodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethodTests.swift; sourceTree = "<group>"; };
@@ -91,7 +93,6 @@
 		5342CFC62C8A008200CFBC9D /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
 		5342CFC92C8A00A600CFBC9D /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
 		5342CFCB2C8A00D200CFBC9D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		5342CFCE2C8A0C0400CFBC9D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		5342CFD02C8A16FB00CFBC9D /* PokemonWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonWorkerTests.swift; sourceTree = "<group>"; };
 		5342CFD22C8A173700CFBC9D /* NetworkerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkerSpy.swift; sourceTree = "<group>"; };
 		5342CFD42C8A179400CFBC9D /* EnvironmentStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentStub.swift; sourceTree = "<group>"; };
@@ -104,6 +105,11 @@
 		5342CFE62C8A5F8E00CFBC9D /* MainViewModelOutputSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelOutputSpy.swift; sourceTree = "<group>"; };
 		5342CFE82C8A666600CFBC9D /* PokemonRowRuleUseCaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonRowRuleUseCaseSpy.swift; sourceTree = "<group>"; };
 		5342CFEA2C8A6DB200CFBC9D /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		5342CFEF2C8A74B000CFBC9D /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		5342CFF12C8A753800CFBC9D /* PokemonDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailResponse.swift; sourceTree = "<group>"; };
+		5342CFF42C8A7A4700CFBC9D /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
+		5342CFF62C8A88F300CFBC9D /* PokemonDetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailRow.swift; sourceTree = "<group>"; };
+		5342CFF82C8A8C1600CFBC9D /* PokemonInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonInfoView.swift; sourceTree = "<group>"; };
 		CB0C63972C2F0AC90089A6A4 /* Interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Interview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0C639A2C2F0AC90089A6A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB0C639C2C2F0AC90089A6A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +167,7 @@
 				5342CF9F2C89C2DB00CFBC9D /* PokemonWorker.swift */,
 				5342CFA12C89C30900CFBC9D /* PokemonCatalogResponse.swift */,
 				5342CFA32C89C33600CFBC9D /* PokemonEndpoint.swift */,
+				5342CFF12C8A753800CFBC9D /* PokemonDetailResponse.swift */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -188,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				5342CFAE2C89C82300CFBC9D /* DummyEndpoint.swift */,
-				5342CFB02C89C84A00CFBC9D /* DummyURLEndpoint.swift */,
 				5342CFB22C89C86300CFBC9D /* DummyResponse.swift */,
 			);
 			path = Dummies;
@@ -262,7 +268,6 @@
 		5342CFCD2C8A0BF900CFBC9D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				5342CFCE2C8A0C0400CFBC9D /* UIColor+Extension.swift */,
 				5342CFD92C8A21A800CFBC9D /* Array+Extension.swift */,
 			);
 			path = Extensions;
@@ -316,9 +321,29 @@
 		5342CFED2C8A73E700CFBC9D /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				5342CFF32C8A7A4000CFBC9D /* Router */,
+				5342CFEE2C8A74A400CFBC9D /* ViewModel */,
 				CB0C63CC2C2F11190089A6A4 /* DetailViewController.swift */,
+				5342CFF82C8A8C1600CFBC9D /* PokemonInfoView.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		5342CFEE2C8A74A400CFBC9D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5342CFEF2C8A74B000CFBC9D /* DetailViewModel.swift */,
+				5342CFF62C8A88F300CFBC9D /* PokemonDetailRow.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5342CFF32C8A7A4000CFBC9D /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				5342CFF42C8A7A4700CFBC9D /* DetailRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		CB0C638E2C2F0AC90089A6A4 = {
@@ -527,22 +552,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5342CFF52C8A7A4700CFBC9D /* DetailRouter.swift in Sources */,
 				5342CFA42C89C33600CFBC9D /* PokemonEndpoint.swift in Sources */,
 				5342CFCC2C8A00D200CFBC9D /* Constants.swift in Sources */,
+				5342CFF92C8A8C1600CFBC9D /* PokemonInfoView.swift in Sources */,
 				5342CFA72C89C3B700CFBC9D /* Environment.swift in Sources */,
-				5342CFCF2C8A0C0400CFBC9D /* UIColor+Extension.swift in Sources */,
 				5342CF992C89BFD200CFBC9D /* NetworkerError.swift in Sources */,
 				5342CFC72C8A008200CFBC9D /* PokemonTableViewCell.swift in Sources */,
 				5342CF9B2C89C01E00CFBC9D /* Networker.swift in Sources */,
 				CB0C639F2C2F0AC90089A6A4 /* MainViewController.swift in Sources */,
+				5342CFF72C8A88F300CFBC9D /* PokemonDetailRow.swift in Sources */,
 				5342CFEB2C8A6DB200CFBC9D /* AlertController.swift in Sources */,
 				5342CFC02C89CEB800CFBC9D /* MainViewModel.swift in Sources */,
 				5342CFA02C89C2DB00CFBC9D /* PokemonWorker.swift in Sources */,
+				5342CFF02C8A74B000CFBC9D /* DetailViewModel.swift in Sources */,
 				CB0C639B2C2F0AC90089A6A4 /* AppDelegate.swift in Sources */,
 				5342CFDA2C8A21A800CFBC9D /* Array+Extension.swift in Sources */,
 				5342CF9D2C89C16B00CFBC9D /* URLSessionProtocol.swift in Sources */,
 				5342CFCA2C8A00A600CFBC9D /* ViewCode.swift in Sources */,
 				CB0C639D2C2F0AC90089A6A4 /* SceneDelegate.swift in Sources */,
+				5342CFF22C8A753800CFBC9D /* PokemonDetailResponse.swift in Sources */,
 				5342CFD82C8A1E0C00CFBC9D /* AlertLoadingController.swift in Sources */,
 				CB0C63CD2C2F11190089A6A4 /* DetailViewController.swift in Sources */,
 				5342CFA22C89C30900CFBC9D /* PokemonCatalogResponse.swift in Sources */,
@@ -562,7 +591,6 @@
 				5342CFE32C8A5BDA00CFBC9D /* MainViewModelTests.swift in Sources */,
 				5342CFAC2C89C64600CFBC9D /* NetworkerTests.swift in Sources */,
 				5342CFE72C8A5F8E00CFBC9D /* MainViewModelOutputSpy.swift in Sources */,
-				5342CFB12C89C84A00CFBC9D /* DummyURLEndpoint.swift in Sources */,
 				5342CFD32C8A173700CFBC9D /* NetworkerSpy.swift in Sources */,
 				5342CFB92C89CA3D00CFBC9D /* HTTPMethodTests.swift in Sources */,
 				5342CFD52C8A179400CFBC9D /* EnvironmentStub.swift in Sources */,
