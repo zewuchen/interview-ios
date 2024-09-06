@@ -44,7 +44,7 @@ extension PokemonInfoView: ViewCode {
         self.addSubview(stackViewContainer)
         stackViewContainer.addArrangedSubview(labelName)
         stackViewContainer.addArrangedSubview(labelNumber)
-        stackViewContainer.addArrangedSubview(labelWeight)
+        stackViewContainer.addArrangedSubview(labelHeight)
         stackViewContainer.addArrangedSubview(labelWeight)
     }
     
