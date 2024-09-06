@@ -94,6 +94,8 @@ final class MainViewModelTests: XCTestCase {
             sut.getPokemonList(),
             [PokemonRow(title: "1 - dummyName", background: .blue, url: nil)]
         )
+        
+        XCTAssertEqual(pokemonRowRuleUseCaseSpy.getRowBackgroundVerifier.count, 1)
     }
     
     func test_fetchPokemons_whenSuccess_whenResultsIsNotNil_wasCaledOnceLoadedPokemonsWithSuccess() throws {
