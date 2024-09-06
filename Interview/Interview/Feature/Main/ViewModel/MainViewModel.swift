@@ -30,7 +30,7 @@ final class MainViewModel {
     // Using NSLock to avoid data race
     private let nsLock: NSLock = .init()
     private let pokemonWorker: PokemonWorkerProtocol
-    private let pokemonRowRuleUseCase: PokemonRowRuleUseCaseProtocol
+    private let pokemonRowRuleUseCase: MathHelperProtocool
     
     private var pokemons: [PokemonRow] = []
     
@@ -42,7 +42,7 @@ final class MainViewModel {
     
     init(
         pokemonWorker: PokemonWorkerProtocol,
-        pokemonRowRuleUseCase: PokemonRowRuleUseCaseProtocol
+        pokemonRowRuleUseCase: MathHelperProtocool
     ) {
         self.pokemonWorker = pokemonWorker
         self.pokemonRowRuleUseCase = pokemonRowRuleUseCase

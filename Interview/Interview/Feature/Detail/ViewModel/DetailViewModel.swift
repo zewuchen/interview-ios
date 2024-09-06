@@ -19,14 +19,14 @@ protocol DetailViewModelOutput: AnyObject {
 }
 
 final class DetailViewModel {
-    private let pokemonRowRuleUseCase: PokemonRowRuleUseCaseProtocol
+    private let pokemonRowRuleUseCase: MathHelperProtocool
     private let pokemonDetailWorker: PokemonDetailWorker
     private let url: URL
     
     weak var delegate: DetailViewModelOutput?
     
     init(
-        pokemonRowRuleUseCase: PokemonRowRuleUseCaseProtocol,
+        pokemonRowRuleUseCase: MathHelperProtocool,
         pokemonDetailWorker: PokemonDetailWorker,
         url: URL
     ) {

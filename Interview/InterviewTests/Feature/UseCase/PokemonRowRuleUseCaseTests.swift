@@ -10,7 +10,7 @@ import XCTest
 
 final class PokemonRowRuleUseCaseTests: XCTestCase {
 
-    private let sut: PokemonRowRuleUseCase = .init()
+    private let sut: MathHelper = .init()
     
     func test_getRowBackground_whenIsOdd_shouldReturnFalse() throws {
         XCTAssertEqual(sut.getRowBackground(index: 3), .systemBlue)

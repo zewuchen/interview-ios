@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 @testable import Interview
 
-final class PokemonRowRuleUseCaseSpy: PokemonRowRuleUseCaseProtocol {
+final class PokemonRowRuleUseCaseSpy: MathHelperProtocool {
     
     private(set) var getRowBackgroundVerifier: [Int] = []
     
