@@ -11,6 +11,7 @@ final class MainViewController: UIViewController {
     private let heightCell: Double = 44
     private let viewModel: MainViewModelProtocol
     
+    private lazy var feedbackView: FeedbackView = .init()
     private lazy var tableView: UITableView = {
         let tableView: UITableView = .init()
         tableView.dataSource = self
@@ -50,6 +51,7 @@ final class MainViewController: UIViewController {
 extension MainViewController: ViewCode {
     func addSubViews() {
         view.addSubview(tableView)
+        view.addSubview(feedbackView)
     }
     
     func setupConstraints() {
@@ -59,6 +61,8 @@ extension MainViewController: ViewCode {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        
+        feedbackView.attach(at: view)
     }
 }
 
@@ -102,6 +106,7 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: MainViewModelOutput {
     func loadedPokemonsWithSuccess() {
         DispatchQueue.main.async {
+            self.feedbackView.dismiss()
             self.tableView.reloadData()
         }
     }
@@ -113,6 +118,7 @@ extension MainViewController: MainViewModelOutput {
     
     func willLoadPokemons(message: String) {
         DispatchQueue.main.async {
+            self.feedbackView.startAnimating()
         }
     }
 }
