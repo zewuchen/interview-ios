@@ -11,7 +11,7 @@ import UIKit
 final class DetailViewController: UIViewController {
     
     private let viewModel: DetailViewModelProtocol
-    
+    private lazy var feedbackView: FeedbackView = .init()
     private lazy var pokemonInfoView: PokemonInfoView = PokemonInfoView()
     
     private lazy var imageViewPokemon: UIImageView = {
@@ -48,6 +48,7 @@ extension DetailViewController: ViewCode {
     func addSubViews() {
         view.addSubview(imageViewPokemon)
         view.addSubview(pokemonInfoView)
+        view.addSubview(feedbackView)
     }
     
     func setupConstraints() {
@@ -61,22 +62,29 @@ extension DetailViewController: ViewCode {
             pokemonInfoView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.Space.medium),
             pokemonInfoView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
+        
+        feedbackView.attach(at: view)
     }
 }
 
 extension DetailViewController: DetailViewModelOutput {
     func willLoadPokemonInfo(message: String) {
-        
+        DispatchQueue.main.async {
+            self.feedbackView.startAnimating()
+        }
     }
     
     func loadedPokemonInfoWithSuccess(detail: PokemonDetailRow) {
         DispatchQueue.main.async {
             self.pokemonInfoView.fill(detail: detail)
             self.imageViewPokemon.image = .init(named: detail.imageAsset)
+            self.feedbackView.dismiss()
         }
     }
     
-    func loadedPokemonsInfoFailure() {
-        
+    func loadedPokemonsInfoFailure(message: String) {
+        DispatchQueue.main.async {
+            self.feedbackView.showMessage(message)
+        }
     }
 }
