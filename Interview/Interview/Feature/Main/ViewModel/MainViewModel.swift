@@ -14,6 +14,7 @@ protocol MainViewModelProtocol {
     func getScreenTitle() -> String
     func getNumberOfRows() -> Int
     func getPokemonRow(from row: Int) -> PokemonRow?
+    func getPokemonDetailURL(from index: Int) -> URL?
     func fetchPokemons()
     
     func setDelegate(_ delegate: MainViewModelOutput?)
@@ -77,6 +78,11 @@ extension MainViewModel: MainViewModelProtocol {
         return pokemon
     }
     
+    func getPokemonDetailURL(from index: Int) -> URL? {
+        guard let row = getPokemonRow(from: index) else { return nil }
+        return row.url
+    }
+    
     func getNumberOfRows() -> Int {
         nsLock.lock()
         let numberOfRows: Int = pokemons.count
@@ -95,10 +101,11 @@ private extension MainViewModel {
             guard let name = $0.name else { return }
             
             index += 1
-            
+
             pokemons.append(PokemonRow(
                 title: getRowTitle(index: index, name: name),
-                background: getRowBackground(index: index)
+                background: getRowBackground(index: index), 
+                url: getURL(from: $0.url)
             ))
         }
     }
@@ -108,6 +115,19 @@ private extension MainViewModel {
     }
     
     func getRowBackground(index: Int) -> UIColor {
-        pokemonRowRuleUseCase.getRowBackground(index: index)
+        guard pokemonRowRuleUseCase.isIndexEven(index) else {
+            return .systemBlue
+        }
+        
+        guard pokemonRowRuleUseCase.isIndexMultipleOf(index, multiple: 10) else {
+            return .systemYellow
+        }
+        
+        return .systemRed
+    }
+    
+    func getURL(from value: String?) -> URL? {
+        guard let value else { return nil }
+        return URL(string: value)
     }
 }
