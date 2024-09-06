@@ -38,7 +38,7 @@ final class MainViewModelTests: XCTestCase {
     }
     
     func test_fetchPokemons_whenFailure_wasCaledOnceLoadedPokemonsWithFailure() throws {
-        pokemonWorkSpy.resultToBeReturned = .failure(.internalServerError)
+        pokemonWorkSpy.resultFetchPokemonsToBeReturned = .failure(.internalServerError)
         
         sut.fetchPokemons()
         
@@ -48,7 +48,7 @@ final class MainViewModelTests: XCTestCase {
     
     func test_fetchPokemons_whenSuccess_whenResultsIsNil_wasCaledOnceLoadedPokemonsWithFailure() throws {
         let response: PokemonCatalogResponse = .init(count: 0, results: nil)
-        pokemonWorkSpy.resultToBeReturned = .success(response)
+        pokemonWorkSpy.resultFetchPokemonsToBeReturned = .success(response)
         
         sut.fetchPokemons()
         
@@ -59,7 +59,7 @@ final class MainViewModelTests: XCTestCase {
     func test_fetchPokemons_whenSuccess_whenResultsIsNotNil_and_shouldGetPokemonRowWithExpectedValues() throws {
         let results: PokemonEntityResponse = .init(name: "dummyName", url: "dummyUrl")
         let response: PokemonCatalogResponse = .init(count: 0, results: [results])
-        pokemonWorkSpy.resultToBeReturned = .success(response)
+        pokemonWorkSpy.resultFetchPokemonsToBeReturned = .success(response)
         pokemonRowRuleUseCaseSpy.getRowBackgroundToBeReturned = .blue
         
         sut.fetchPokemons()
@@ -75,7 +75,7 @@ final class MainViewModelTests: XCTestCase {
     func test_fetchPokemons_whenSuccess_whenNameIsNil_shouldNotAppendPokemonRow() throws {
         let results: PokemonEntityResponse = .init(name: nil, url: "dummyUrl")
         let response: PokemonCatalogResponse = .init(count: 0, results: [results])
-        pokemonWorkSpy.resultToBeReturned = .success(response)
+        pokemonWorkSpy.resultFetchPokemonsToBeReturned = .success(response)
         
         sut.fetchPokemons()
         
@@ -86,7 +86,7 @@ final class MainViewModelTests: XCTestCase {
         let results: PokemonEntityResponse = .init(name: "dummyName", url: nil)
         let response: PokemonCatalogResponse = .init(count: 0, results: [results])
         pokemonRowRuleUseCaseSpy.getRowBackgroundToBeReturned = .blue
-        pokemonWorkSpy.resultToBeReturned = .success(response)
+        pokemonWorkSpy.resultFetchPokemonsToBeReturned = .success(response)
         
         sut.fetchPokemons()
         
@@ -101,7 +101,7 @@ final class MainViewModelTests: XCTestCase {
     func test_fetchPokemons_whenSuccess_whenResultsIsNotNil_wasCaledOnceLoadedPokemonsWithSuccess() throws {
         let results: PokemonEntityResponse = .init(name: "dummyName", url: "dummyUrl")
         let response: PokemonCatalogResponse = .init(count: 0, results: [results])
-        pokemonWorkSpy.resultToBeReturned = .success(response)
+        pokemonWorkSpy.resultFetchPokemonsToBeReturned = .success(response)
         
         sut.fetchPokemons()
         
