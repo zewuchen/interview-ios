@@ -16,7 +16,7 @@ struct Environment {
         case pokeapi
         
         var host: String {
-            return "https://pokeapi.co"
+            return "pokeapi.co"
         }
     }
 }
