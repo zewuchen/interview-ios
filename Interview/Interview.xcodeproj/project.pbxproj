@@ -62,6 +62,7 @@
 		5342D0242C8CD03600CFBC9D /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342D0232C8CD03600CFBC9D /* Logging.swift */; };
 		5342D0262C8CDA0200CFBC9D /* ServiceProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342D0252C8CDA0200CFBC9D /* ServiceProxyTests.swift */; };
 		5342D0282C8CDAC900CFBC9D /* CacheworkerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342D0272C8CDAC900CFBC9D /* CacheworkerSpy.swift */; };
+		5342D02A2C8CE0C600CFBC9D /* URLRequestFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342D0292C8CE0C600CFBC9D /* URLRequestFactoryTests.swift */; };
 		CB0C639B2C2F0AC90089A6A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C639A2C2F0AC90089A6A4 /* AppDelegate.swift */; };
 		CB0C639D2C2F0AC90089A6A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C639C2C2F0AC90089A6A4 /* SceneDelegate.swift */; };
 		CB0C639F2C2F0AC90089A6A4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C639E2C2F0AC90089A6A4 /* MainViewController.swift */; };
@@ -146,6 +147,7 @@
 		5342D0232C8CD03600CFBC9D /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		5342D0252C8CDA0200CFBC9D /* ServiceProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProxyTests.swift; sourceTree = "<group>"; };
 		5342D0272C8CDAC900CFBC9D /* CacheworkerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheworkerSpy.swift; sourceTree = "<group>"; };
+		5342D0292C8CE0C600CFBC9D /* URLRequestFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestFactoryTests.swift; sourceTree = "<group>"; };
 		CB0C63972C2F0AC90089A6A4 /* Interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Interview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0C639A2C2F0AC90089A6A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB0C639C2C2F0AC90089A6A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				5342CFAB2C89C64600CFBC9D /* NetworkerTests.swift */,
 				5342CFB82C89CA3D00CFBC9D /* HTTPMethodTests.swift */,
 				5342D0252C8CDA0200CFBC9D /* ServiceProxyTests.swift */,
+				5342D0292C8CE0C600CFBC9D /* URLRequestFactoryTests.swift */,
 			);
 			path = Networker;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 				5342CFD12C8A16FB00CFBC9D /* PokemonWorkerTests.swift in Sources */,
 				5342CFE52C8A5C3900CFBC9D /* PokemonWorkerSpy.swift in Sources */,
 				5342CFE92C8A666600CFBC9D /* MathHelperSpy.swift in Sources */,
+				5342D02A2C8CE0C600CFBC9D /* URLRequestFactoryTests.swift in Sources */,
 				5342CFB32C89C86300CFBC9D /* DummyResponse.swift in Sources */,
 				5342D00D2C8B980400CFBC9D /* PokemonDetailAssetRuleUseCaseTests.swift in Sources */,
 				5342D0162C8BC7F800CFBC9D /* ConstantsTests.swift in Sources */,
