@@ -43,7 +43,8 @@ final class MainViewModelTests: XCTestCase {
         sut.fetchPokemons()
         
         XCTAssertEqual(sut.getPokemonList().isEmpty, true)
-        XCTAssertEqual(mainViewModelOutputSpy.loadedPokemonsWithFailureVerifier, 1)
+        XCTAssertEqual(mainViewModelOutputSpy.loadedPokemonsWithFailureVerifier.count, 1)
+        XCTAssertEqual(mainViewModelOutputSpy.loadedPokemonsWithFailureVerifier.first, "Erro ao carregar informações.")
     }
     
     func test_fetchPokemons_whenSuccess_whenResultsIsNil_wasCaledOnceLoadedPokemonsWithFailure() throws {
@@ -52,7 +53,8 @@ final class MainViewModelTests: XCTestCase {
         
         sut.fetchPokemons()
         
-        XCTAssertEqual(mainViewModelOutputSpy.loadedPokemonsWithFailureVerifier, 1)
+        XCTAssertEqual(mainViewModelOutputSpy.loadedPokemonsWithFailureVerifier.count, 1)
+        XCTAssertEqual(mainViewModelOutputSpy.loadedPokemonsWithFailureVerifier.first, "Erro ao carregar informações.")
         XCTAssertEqual(sut.getPokemonList().isEmpty, true)
     }
     

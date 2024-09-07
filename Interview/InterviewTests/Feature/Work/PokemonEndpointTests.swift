@@ -13,7 +13,7 @@ final class PokemonEndpointTests: XCTestCase {
     func test_init() throws {
         let sut: PokemonEndpoint = .init()
         
-        XCTAssertEqual(sut.host, "https://pokeapi.co")
+        XCTAssertEqual(sut.host, "pokeapi.co")
         XCTAssertEqual(sut.baseUrl, "/api/v2/pokemon/")
         XCTAssertEqual(sut.method, .GET)
     }

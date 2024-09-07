@@ -12,7 +12,7 @@ final class MainViewModelOutputSpy: MainViewModelOutput {
     
     private(set) var willLoadPokemonsVerifier: [String] = []
     private(set) var loadedPokemonsWithSuccessVerifier: Int = 0
-    private(set) var loadedPokemonsWithFailureVerifier: Int = 0
+    private(set) var loadedPokemonsWithFailureVerifier: [String] = []
     
     func willLoadPokemons(message: String) {
         willLoadPokemonsVerifier.append(message)
@@ -22,7 +22,7 @@ final class MainViewModelOutputSpy: MainViewModelOutput {
         loadedPokemonsWithSuccessVerifier += 1
     }
     
-    func loadedPokemonsWithFailure() {
-        loadedPokemonsWithFailureVerifier += 1
+    func loadedPokemonsWithFailure(message: String) {
+        loadedPokemonsWithFailureVerifier.append(message)
     }
 }

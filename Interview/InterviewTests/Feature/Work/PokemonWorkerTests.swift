@@ -39,7 +39,7 @@ final class CharactersWorkerTests: XCTestCase {
         
         networkerSpy.verifyArgumentsToRequest(
             endpoint: DummyEndpoint(
-                host: "https://pokeapi.co",
+                host: "pokeapi.co",
                 baseUrl: "/api/v2/pokemon/",
                 method: .GET
             )
@@ -55,7 +55,7 @@ final class CharactersWorkerTests: XCTestCase {
         
         networkerSpy.verifyArgumentsToRequest(
             endpoint: DummyEndpoint(
-                host: "https://pokeapi.co",
+                host: "pokeapi.co",
                 baseUrl: "/api/v2/pokemon/",
                 method: .GET
             )
