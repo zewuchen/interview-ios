@@ -8,7 +8,7 @@
 import Foundation
 
 enum URLRequestFactory {
-    static func make(from endpoint: Endpoint, cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy) -> URLRequest? {
+    static func make(from endpoint: Endpoint, cachePolicy: URLRequest.CachePolicy) -> URLRequest? {
         let urlString: String = "https://\(endpoint.host)\(endpoint.baseUrl)"
         
         guard let url = URL(string: urlString) else { return nil }
