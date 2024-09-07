@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PokemonDetailResponse: Decodable {
+struct PokemonDetailResponse: Decodable, Equatable {
     let id: Int?
     let height: Int?
     let name: String?
