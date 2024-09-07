@@ -8,7 +8,11 @@
 import Foundation
 
 protocol NetworkerProtocol {
-    func request<T: Decodable>(endpoint: Endpoint, completion: @escaping ((Result<T, NetworkerError>) -> Void))
+    func request<T: Decodable>(
+        endpoint: Endpoint,
+        cachePolicy: URLRequest.CachePolicy,
+        completion: @escaping ((Result<T, NetworkerError>) -> Void)
+    )
 }
 
 final class Networker: NetworkerProtocol {
@@ -24,19 +28,8 @@ final class Networker: NetworkerProtocol {
         self.jsonNDecoder = jsonNDecoder
     }
     
-    func make(from endpoint: Endpoint) -> URLRequest? {
-        let urlString: String = "https://\(endpoint.host)\(endpoint.baseUrl)"
-        
-        guard let url = URL(string: urlString) else { return nil }
-        
-        var urlRequest: URLRequest = .init(url: url)
-        urlRequest.httpMethod = endpoint.method.rawValue
-        
-        return urlRequest
-    }
-    
-    func request<T: Decodable>(endpoint: Endpoint, completion: @escaping ((Result<T, NetworkerError>) -> Void)) {
-        guard let urlRequest = make(from: endpoint) else {
+    func request<T: Decodable>(endpoint: Endpoint, cachePolicy: URLRequest.CachePolicy, completion: @escaping ((Result<T, NetworkerError>) -> Void)) {
+        guard let urlRequest = URLRequestFactory.make(from: endpoint, cachePolicy: cachePolicy) else {
             completion(.failure(.unknown("URLRequest is nil")))
             return
         }
