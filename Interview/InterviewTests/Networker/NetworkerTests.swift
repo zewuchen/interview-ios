@@ -9,6 +9,7 @@ import XCTest
 @testable import Interview
 
 final class NetworkerTests: XCTestCase {
+    private let dummyCachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy
     private let urlSessionDataTaskSpy: URLSessionDataTaskSpy = .init()
     private let urlSessionSpy: UrlSessionSpy = .init()
     private lazy var sut: Networker = .init(
@@ -19,7 +20,7 @@ final class NetworkerTests: XCTestCase {
     func test_request_whenURLRequestIsNil_shouldGetFailure_and_shouldNotCallUrlSession() throws {
         let dummyEndpoint: DummyEndpoint = .init(host: " ", baseUrl: " invalid")
         
-        sut.request(endpoint: dummyEndpoint) { result in
+        sut.request(endpoint: dummyEndpoint, cachePolicy: dummyCachePolicy) { result in
             let result: Result<DummyResponse, NetworkerError> = result
             XCTAssertEqual(result, .failure(.unknown("URLRequest is nil")))
         }
@@ -33,7 +34,7 @@ final class NetworkerTests: XCTestCase {
         let dummyURLRequest: URLRequest = .init(url: try XCTUnwrap(URL(string: "https://dummy_host/dummy_baseUrl")))
         urlSessionSpy.urlResponseToBeReturned = nil
         
-        sut.request(endpoint: dummyEndpoint) { result in
+        sut.request(endpoint: dummyEndpoint, cachePolicy: dummyCachePolicy) { result in
             let result: Result<DummyResponse, NetworkerError> = result
             XCTAssertEqual(result, .failure(.unknown("HTTPURLResponse is nil")))
         }
@@ -46,7 +47,7 @@ final class NetworkerTests: XCTestCase {
         let dummyURLRequest: URLRequest = .init(url: try XCTUnwrap(URL(string: "https://dummy_host/dummy_baseUrl")))
         urlSessionSpy.urlResponseToBeReturned = try givemHTTPURLResponse(statusCode: 10)
         
-        sut.request(endpoint: dummyEndpoint) { result in
+        sut.request(endpoint: dummyEndpoint, cachePolicy: dummyCachePolicy) { result in
             let result: Result<DummyResponse, NetworkerError> = result
             XCTAssertEqual(result, .failure(.unknown(nil)))
         }
@@ -59,7 +60,7 @@ final class NetworkerTests: XCTestCase {
         let dummyURLRequest: URLRequest = .init(url: try XCTUnwrap(URL(string: "https://dummy_host/dummy_baseUrl")))
         urlSessionSpy.urlResponseToBeReturned = try givemHTTPURLResponse(statusCode: 500)
         
-        sut.request(endpoint: dummyEndpoint) { result in
+        sut.request(endpoint: dummyEndpoint, cachePolicy: dummyCachePolicy) { result in
             let result: Result<DummyResponse, NetworkerError> = result
             XCTAssertEqual(result, .failure(.internalServerError))
         }
@@ -73,7 +74,7 @@ final class NetworkerTests: XCTestCase {
         urlSessionSpy.urlResponseToBeReturned = try givemHTTPURLResponse(statusCode: 200)
         urlSessionSpy.dataToBeReturned = nil
         
-        sut.request(endpoint: dummyEndpoint) { result in
+        sut.request(endpoint: dummyEndpoint, cachePolicy: dummyCachePolicy) { result in
             let result: Result<DummyResponse, NetworkerError> = result
             XCTAssertEqual(result, .failure(.unknown("Data is nil")))
         }
@@ -88,7 +89,7 @@ final class NetworkerTests: XCTestCase {
         urlSessionSpy.urlResponseToBeReturned = try givemHTTPURLResponse(statusCode: 200)
         urlSessionSpy.dataToBeReturned = dummyData
         
-        sut.request(endpoint: dummyEndpoint) { result in
+        sut.request(endpoint: dummyEndpoint, cachePolicy: dummyCachePolicy) { result in
             let result: Result<DummyResponse, NetworkerError> = result
             XCTAssertEqual(result, .success(DummyResponse(dummy: "dummy")))
         }
@@ -103,7 +104,7 @@ final class NetworkerTests: XCTestCase {
         urlSessionSpy.urlResponseToBeReturned = try givemHTTPURLResponse(statusCode: 200)
         urlSessionSpy.dataToBeReturned = dummyData
         
-        sut.request(endpoint: dummyEndpoint) { result in
+        sut.request(endpoint: dummyEndpoint, cachePolicy: dummyCachePolicy) { result in
             let result: Result<DummyResponse, NetworkerError> = result
             XCTAssertEqual(result, .failure(.parseError))
         }
