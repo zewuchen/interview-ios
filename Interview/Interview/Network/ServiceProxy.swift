@@ -7,7 +7,13 @@
 
 import Foundation
 
-protocol ServiceProxyProtocol: NetworkerProtocol {}
+protocol ServiceProxyProtocol {
+    func request<T: Decodable>(
+        endpoint: Endpoint,
+        cachePolicy: URLRequest.CachePolicy,
+        completion: @escaping ((Result<T, NetworkerError>) -> Void)
+    )
+}
 
 final class ServiceProxy: ServiceProxyProtocol {
     private let networker: NetworkerProtocol
@@ -26,7 +32,7 @@ final class ServiceProxy: ServiceProxyProtocol {
         Task {
             Logging.debug(message: "Will request to \(endpoint.baseUrl)", _class: Self.self)
             
-            switch await loadFromCache(endpoint: endpoint) as Result<T, NetworkerError> {
+            switch await loadFromCache(endpoint: endpoint, cachePolicy: cachePolicy) as Result<T, NetworkerError> {
             case .success(let cacheResponse):
                 Logging.debug(message: "Response from cache", _class: Self.self)
                 completion(.success(cacheResponse))
@@ -38,9 +44,9 @@ final class ServiceProxy: ServiceProxyProtocol {
         }
     }
     
-    private func loadFromCache<T: Decodable>(endpoint: Endpoint) async -> Result<T, NetworkerError> {
+    private func loadFromCache<T: Decodable>(endpoint: Endpoint, cachePolicy: URLRequest.CachePolicy) async -> Result<T, NetworkerError> {
         return await withCheckedContinuation { continuation in
-            return cacheWorker.request(endpoint: endpoint) { resul in
+            return cacheWorker.request(endpoint: endpoint, cachePolicy: cachePolicy) { resul in
                 guard case .success(let cacheResponse) = resul as Result<T, NetworkerError> else {
                     continuation.resume(returning: .failure(.notFound))
                     return
@@ -53,7 +59,7 @@ final class ServiceProxy: ServiceProxyProtocol {
     
     private func loadFromRemote<T: Decodable>(endpoint: Endpoint, cachePolicy: URLRequest.CachePolicy) async -> Result<T, NetworkerError> {
         return await withCheckedContinuation { continuation in
-            return networker.request(endpoint: endpoint, cachePolicy: cachePolicy) { result in
+            return networker.request(endpoint: endpoint, cachePolicy: cachePolicy, cacheWorker: cacheWorker) { result in
                 switch result as Result<T, NetworkerError> {
                 case .success(let remoteResponse):
                     return continuation.resume(returning: .success(remoteResponse))
