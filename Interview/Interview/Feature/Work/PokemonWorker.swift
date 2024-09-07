@@ -18,18 +18,19 @@ protocol PokemonDetailWorker {
 protocol PokemonWorkerProtocol: PokemonMainWorker, PokemonDetailWorker {}
 
 final class PokemonWorker: PokemonWorkerProtocol {
-    private let networker: NetworkerProtocol
+    private let cachePolicy: URLRequest.CachePolicy = .returnCacheDataElseLoad
+    private let serviceProxy: NetworkerProtocol
     private let environment: EnvironmentProtocol.Type
     
-    init(networker: NetworkerProtocol, environment: EnvironmentProtocol.Type) {
-        self.networker = networker
+    init(serviceProxy: NetworkerProtocol, environment: EnvironmentProtocol.Type) {
+        self.serviceProxy = serviceProxy
         self.environment = environment
     }
     
     func fetchPokemons(completion: @escaping ((Result<PokemonCatalogResponse, NetworkerError>) -> Void)) {
         let endpoint: Endpoint = PokemonEndpoint()
         
-        networker.request(endpoint: endpoint, completion: completion)
+        serviceProxy.request(endpoint: endpoint, cachePolicy: cachePolicy, completion: completion)
     }
     
     func fetchPokemonDetail(url: URL, completion: @escaping ((Result<PokemonDetailResponse, NetworkerError>) -> Void)) {
@@ -42,6 +43,6 @@ final class PokemonWorker: PokemonWorkerProtocol {
             baseUrl: url.path
         )
         
-        networker.request(endpoint: endpoint, completion: completion)
+        serviceProxy.request(endpoint: endpoint, cachePolicy: cachePolicy, completion: completion)
     }
 }
