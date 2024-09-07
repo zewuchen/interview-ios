@@ -32,7 +32,7 @@ final class URLCacheFactory {
 }
 
 protocol CacheworkerProtocol {
-    func request<T: Decodable>(endpoint: Endpoint, cachePolicy: URLRequest.CachePolicy, completion: @escaping ((Result<T, NetworkerError>) -> Void))
+    func request<T: Decodable>(endpoint: Endpoint, completion: @escaping ((Result<T, NetworkerError>) -> Void))
     func storeCachedResponse(_ urlResponse: URLResponse, for urlRequest: URLRequest, data: Data)
 }
 
@@ -50,8 +50,8 @@ final class Cacheworker: CacheworkerProtocol {
         urlCache.storeCachedResponse(cacheResponse, for: urlRequest)
     }
     
-    func request<T: Decodable>(endpoint: Endpoint, cachePolicy: URLRequest.CachePolicy, completion: @escaping ((Result<T, NetworkerError>) -> Void)) {
-        guard let urlRequest = URLRequestFactory.make(from: endpoint, cachePolicy: cachePolicy) else {
+    func request<T: Decodable>(endpoint: Endpoint, completion: @escaping ((Result<T, NetworkerError>) -> Void)) {
+        guard let urlRequest = URLRequestFactory.make(from: endpoint) else {
             completion(.failure(.notFound))
             return
         }
