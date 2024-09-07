@@ -23,4 +23,15 @@ final class URLRequestFactoryTests: XCTestCase {
             )
         )
     }
+    
+    func test_make_whenInvalidUrl_shouldReturnNil() throws {
+        let dummyEndpoint: DummyEndpoint = .init(host: " ", baseUrl: " invalid")
+        XCTAssertEqual(
+            URLRequestFactory.make(
+                from: dummyEndpoint,
+                cachePolicy: .returnCacheDataElseLoad
+            ),
+            nil
+        )
+    }
 }
