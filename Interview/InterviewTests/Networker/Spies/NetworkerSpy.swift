@@ -12,10 +12,10 @@ import XCTest
 final class NetworkerSpy<R: Decodable>: NetworkerProtocol {
     private(set) var requestVerifier: [Endpoint] = []
     var resultToBeReturned: Result<R, NetworkerError>?
-    var resultDataToBeReturned: Result<Data, NetworkerError>?
     
     func request<T: Decodable>(
         endpoint: Endpoint,
+        cachePolicy: URLRequest.CachePolicy,
         completion: @escaping ((Result<T, NetworkerError>) -> Void)
     ) {
         requestVerifier.append(endpoint)
