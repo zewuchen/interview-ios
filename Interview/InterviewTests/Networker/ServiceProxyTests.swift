@@ -9,7 +9,6 @@ import XCTest
 @testable import Interview
 
 final class ServiceProxyTests: XCTestCase {
-    let dummyCachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy
     private let networkerSpy: NetworkerSpy<DummyResponse> = .init()
     private let cacheworkerSpy: CacheworkerSpy<DummyResponse> = .init()
     private lazy var sut: ServiceProxy = .init(
@@ -23,7 +22,7 @@ final class ServiceProxyTests: XCTestCase {
         cacheworkerSpy.resultToBeReturned = .success(dummyResponse)
         let expect = expectation(description: "load from cache")
         
-        sut.request(endpoint: dummyEndpoint, cachePolicy: dummyCachePolicy) { result in
+        sut.request(endpoint: dummyEndpoint) { result in
             switch result as Result<DummyResponse, NetworkerError> {
             case .success(let response):
                 XCTAssertEqual(response, dummyResponse)
@@ -48,7 +47,7 @@ final class ServiceProxyTests: XCTestCase {
         networkerSpy.resultToBeReturned = .success(dummyResponse)
         let expect = expectation(description: "load from network")
         
-        sut.request(endpoint: dummyEndpoint, cachePolicy: dummyCachePolicy) { result in
+        sut.request(endpoint: dummyEndpoint) { result in
             switch result as Result<DummyResponse, NetworkerError> {
             case .success(let response):
                 XCTAssertEqual(response, dummyResponse)
@@ -74,7 +73,7 @@ final class ServiceProxyTests: XCTestCase {
         networkerSpy.resultToBeReturned = .failure(.unknown("error from network"))
         let expect = expectation(description: "load from cache")
         
-        sut.request(endpoint: dummyEndpoint, cachePolicy: dummyCachePolicy) { result in
+        sut.request(endpoint: dummyEndpoint) { result in
             switch result as Result<DummyResponse, NetworkerError> {
             case .success(let response):
                 XCTAssertEqual(response, dummyResponse)
