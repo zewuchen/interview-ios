@@ -15,7 +15,7 @@ final class NetworkerSpy<R: Decodable>: NetworkerProtocol {
     
     func request<T: Decodable>(
         endpoint: Endpoint,
-        cachePolicy: URLRequest.CachePolicy,
+        cacheWorker: CacheworkerProtocol,
         completion: @escaping ((Result<T, NetworkerError>) -> Void)
     ) {
         requestVerifier.append(endpoint)
