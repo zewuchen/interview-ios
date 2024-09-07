@@ -18,11 +18,11 @@ protocol PokemonDetailWorker {
 protocol PokemonWorkerProtocol: PokemonMainWorker, PokemonDetailWorker {}
 
 final class PokemonWorker: PokemonWorkerProtocol {
-    private let cachePolicy: URLRequest.CachePolicy = .returnCacheDataElseLoad
-    private let serviceProxy: NetworkerProtocol
+    private let cachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalCacheData
+    private let serviceProxy: ServiceProxyProtocol
     private let environment: EnvironmentProtocol.Type
     
-    init(serviceProxy: NetworkerProtocol, environment: EnvironmentProtocol.Type) {
+    init(serviceProxy: ServiceProxyProtocol, environment: EnvironmentProtocol.Type) {
         self.serviceProxy = serviceProxy
         self.environment = environment
     }
