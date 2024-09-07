@@ -52,7 +52,7 @@ final class Cacheworker: CacheworkerProtocol {
     
     func request<T: Decodable>(endpoint: Endpoint, completion: @escaping ((Result<T, NetworkerError>) -> Void)) {
         guard let urlRequest = URLRequestFactory.make(from: endpoint) else {
-            completion(.failure(.notFound))
+            completion(.failure(.unknown("URLRequest is nil")))
             return
         }
         
