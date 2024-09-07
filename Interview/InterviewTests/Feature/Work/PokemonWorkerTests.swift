@@ -13,7 +13,7 @@ final class CharactersWorkerTests: XCTestCase {
     private let networkerSpy: NetworkerSpy<PokemonCatalogResponse> = .init()
     private let environmentStub: EnvironmentStub.Type = EnvironmentStub.self
     private lazy var sut: PokemonWorker = PokemonWorker(
-        networker: networkerSpy,
+        serviceProxy: networkerSpy,
         environment: environmentStub
     )
 
