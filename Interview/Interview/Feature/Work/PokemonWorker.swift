@@ -18,7 +18,6 @@ protocol PokemonDetailWorker {
 protocol PokemonWorkerProtocol: PokemonMainWorker, PokemonDetailWorker {}
 
 final class PokemonWorker: PokemonWorkerProtocol {
-    private let cachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalCacheData
     private let serviceProxy: ServiceProxyProtocol
     private let environment: EnvironmentProtocol.Type
     
@@ -30,11 +29,12 @@ final class PokemonWorker: PokemonWorkerProtocol {
     func fetchPokemons(completion: @escaping ((Result<PokemonCatalogResponse, NetworkerError>) -> Void)) {
         let endpoint: Endpoint = PokemonEndpoint()
         
-        serviceProxy.request(endpoint: endpoint, cachePolicy: cachePolicy, completion: completion)
+        serviceProxy.request(endpoint: endpoint, completion: completion)
     }
     
     func fetchPokemonDetail(url: URL, completion: @escaping ((Result<PokemonDetailResponse, NetworkerError>) -> Void)) {
         guard let url = URLComponents(url: url, resolvingAgainstBaseURL: true), let host = url.host else {
+            completion(.failure(.parseError))
             return
         }
         
@@ -43,6 +43,6 @@ final class PokemonWorker: PokemonWorkerProtocol {
             baseUrl: url.path
         )
         
-        serviceProxy.request(endpoint: endpoint, cachePolicy: cachePolicy, completion: completion)
+        serviceProxy.request(endpoint: endpoint, completion: completion)
     }
 }
