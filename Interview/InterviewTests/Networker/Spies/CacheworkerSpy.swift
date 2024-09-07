@@ -11,6 +11,7 @@ import XCTest
 
 final class CacheworkerSpy<R: Decodable>: CacheworkerProtocol {
     private(set) var requestVerifier: [Endpoint] = []
+    private(set) var storeCachedResponseVerifier: [(urlResponse: URLResponse, urlRequest: URLRequest, data: Data)] = []
     var resultToBeReturned: Result<R, NetworkerError>?
     
     func request<T: Decodable>(
@@ -24,6 +25,10 @@ final class CacheworkerSpy<R: Decodable>: CacheworkerProtocol {
         }
         
         completion(result)
+    }
+    
+    func storeCachedResponse(_ urlResponse: URLResponse, for urlRequest: URLRequest, data: Data) {
+        storeCachedResponseVerifier.append((urlResponse, urlRequest, data))
     }
     
     func verifyArgumentsToRequest(
