@@ -9,6 +9,7 @@ import UIKit
 
 final class MainViewController: UIViewController {
     private let heightCell: Double = 44
+    private let router: DetailRouter = .init()
     private let viewModel: MainViewModelProtocol
     
     private lazy var feedbackView: FeedbackView = .init()
@@ -95,7 +96,7 @@ extension MainViewController: UITableViewDelegate {
             return
         }
         
-        DetailRouter.show(from: navigationController, with: url)
+        router.start(from: navigationController, with: url)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

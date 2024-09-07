@@ -15,16 +15,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
         window = UIWindow(windowScene: windowScene)
 
-        let mathHelper: MathHelperProtocool = MathHelper()
-        let pokemonRowBackgroundColorUserCase: PokemonRowBackgroundUseCase = .init(mathHelper: mathHelper)
+        let navigation = UINavigationController()
+        let router: MainRouter = MainRouter()
+        router.start(from: navigation)
         
-        let mainViewModel: MainViewModelProtocol = MainViewModel(
-            pokemonWorker: PokemonWorkerFactory.make(),
-            pokemonRowBackgroundColorUserCase: pokemonRowBackgroundColorUserCase
-        )
-        
-        let controller = MainViewController(viewModel: mainViewModel)
-        let navigation = UINavigationController(rootViewController: controller)
         window?.rootViewController = navigation
         window?.makeKeyAndVisible()
     }

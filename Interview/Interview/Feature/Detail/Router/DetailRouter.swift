@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class DetailRouter {
-    static func show(from navigation: UINavigationController?, with url: URL) {
+    func start(from navigation: UINavigationController?, with url: URL) {
         let mathHelper: MathHelper = .init()
         let pokemonDetailAssetRuleUseCase: PokemonDetailAssetRuleUseCase = PokemonDetailAssetRuleUseCase(
             mathHelper: mathHelper
