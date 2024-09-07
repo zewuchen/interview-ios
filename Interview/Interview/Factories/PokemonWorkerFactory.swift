@@ -17,8 +17,15 @@ enum PokemonWorkerFactory {
             jsonNDecoder: jsonDecoder
         )
         
-        return PokemonWorker(
+        let cacheWorker: CacheworkerProtocol = Cacheworker()
+        
+        let serviceProxy: ServiceProxyProtocol = ServiceProxy(
             networker: networker,
+            cacheWorker: cacheWorker
+        )
+        
+        return PokemonWorker(
+            serviceProxy: serviceProxy,
             environment: environment
         )
     }
