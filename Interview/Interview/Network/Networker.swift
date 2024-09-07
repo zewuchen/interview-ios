@@ -10,7 +10,6 @@ import Foundation
 protocol NetworkerProtocol {
     func request<T: Decodable>(
         endpoint: Endpoint,
-        cachePolicy: URLRequest.CachePolicy,
         cacheWorker: CacheworkerProtocol,
         completion: @escaping ((Result<T, NetworkerError>) -> Void)
     )
@@ -31,11 +30,10 @@ final class Networker: NetworkerProtocol {
     
     func request<T: Decodable>(
         endpoint: Endpoint,
-        cachePolicy: URLRequest.CachePolicy,
         cacheWorker: CacheworkerProtocol,
         completion: @escaping ((Result<T, NetworkerError>) -> Void)
     ) {
-        guard let urlRequest = URLRequestFactory.make(from: endpoint, cachePolicy: cachePolicy) else {
+        guard let urlRequest = URLRequestFactory.make(from: endpoint) else {
             completion(.failure(.unknown("URLRequest is nil")))
             return
         }
