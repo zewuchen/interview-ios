@@ -17,7 +17,7 @@ enum PokemonWorkerFactory {
             jsonNDecoder: jsonDecoder
         )
         
-        let cacheWorker: CacheworkerProtocol = Cacheworker()
+        let cacheWorker: CacheworkerProtocol = Cacheworker(urlCache: URLCacheFactory.shared.make())
         
         let serviceProxy: ServiceProxyProtocol = ServiceProxy(
             networker: networker,
