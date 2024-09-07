@@ -9,19 +9,23 @@ import XCTest
 @testable import Interview
 
 final class CharactersWorkerTests: XCTestCase {
-
-    private let networkerSpy: NetworkerSpy<PokemonCatalogResponse> = .init()
-    private let environmentStub: EnvironmentStub.Type = EnvironmentStub.self
-    private lazy var sut: PokemonWorker = PokemonWorker(
-        serviceProxy: networkerSpy,
-        environment: environmentStub
-    )
-
+    
+    private func givemSut(serviceProxySpy: ServiceProxyProtocol) -> PokemonWorker {
+        let environmentStub: EnvironmentStub.Type = EnvironmentStub.self
+        return PokemonWorker(
+            serviceProxy: serviceProxySpy,
+            environment: environmentStub
+        )
+    }
+    
     func test_fetchCharacters_whenSuccess_shouldCallRequest() throws {
-        networkerSpy.resultToBeReturned = .success(
+        let serviceProxySpy: ServiceProxySpy<PokemonCatalogResponse> = .init()
+        let sut: PokemonWorker = givemSut(serviceProxySpy: serviceProxySpy)
+        serviceProxySpy.resultToBeReturned = .success(
             PokemonCatalogResponse(
-                count: 1,
-                results: [.init(name: "dummyName", url: "dummyUrl")]
+                count: 1, results: [
+                    .init(name: "dummyName", url: "dummyUrl")
+                ]
             )
         )
         
@@ -37,7 +41,7 @@ final class CharactersWorkerTests: XCTestCase {
             )
         }
         
-        networkerSpy.verifyArgumentsToRequest(
+        serviceProxySpy.verifyArgumentsToRequest(
             endpoint: DummyEndpoint(
                 host: "pokeapi.co",
                 baseUrl: "/api/v2/pokemon/",
@@ -46,19 +50,69 @@ final class CharactersWorkerTests: XCTestCase {
         )
     }
     
-    func test_f1etchCharacters_whenSuccess_shouldCallRequest() throws {
-        networkerSpy.resultToBeReturned = .failure(.badRequest)
+    func test_fetchCharacters_whenFailure_shouldCallRequest() throws {
+        let serviceProxySpy: ServiceProxySpy<PokemonCatalogResponse> = .init()
+        let sut: PokemonWorker = givemSut(serviceProxySpy: serviceProxySpy)
+        serviceProxySpy.resultToBeReturned = .failure(.badRequest)
         
         sut.fetchPokemons { result in
             XCTAssertEqual(result, .failure(.badRequest))
         }
         
-        networkerSpy.verifyArgumentsToRequest(
+        serviceProxySpy.verifyArgumentsToRequest(
             endpoint: DummyEndpoint(
                 host: "pokeapi.co",
                 baseUrl: "/api/v2/pokemon/",
                 method: .GET
             )
         )
+    }
+    
+    func test_fetchPokemonDetail_whenSuccess_shouldCallRequest() throws {
+        let serviceProxySpy: ServiceProxySpy<PokemonDetailResponse> = .init()
+        let sut: PokemonWorker = givemSut(serviceProxySpy: serviceProxySpy)
+        let dummyURL: URL = try XCTUnwrap(URL(string: "https://www.dummy.com/dummyPath"))
+        serviceProxySpy.resultToBeReturned = .success(
+            PokemonDetailResponse(id: 1, height: 2, name: "dummyName", weight: 3)
+        )
+        
+        sut.fetchPokemonDetail(url: dummyURL) { result in
+            XCTAssertEqual(
+                result,
+                .success(
+                    PokemonDetailResponse(id: 1, height: 2, name: "dummyName", weight: 3)
+                )
+            )
+        }
+        
+        serviceProxySpy.verifyArgumentsToRequest(
+            endpoint: DummyEndpoint(
+                host: "www.dummy.com",
+                baseUrl: "/dummyPath",
+                method: .GET
+            )
+        )
+    }
+    
+    func test_fetchPokemonDetail_whenFailure_shouldCallRequest() throws {
+        let dummyURL: URL = try XCTUnwrap(URL(string: "https://www.dummy.com/dummyPath"))
+        let serviceProxySpy: ServiceProxySpy<PokemonDetailResponse> = .init()
+        let sut: PokemonWorker = givemSut(serviceProxySpy: serviceProxySpy)
+        serviceProxySpy.resultToBeReturned = .failure(.badRequest)
+        
+        sut.fetchPokemonDetail(url: dummyURL) { result in
+            XCTAssertEqual(result, .failure(.badRequest))
+        }
+    }
+    
+    func test_fetchPokemonDetail_whenURLNil_shouldGetFailure() throws {
+        let dummyURL: URL = try XCTUnwrap(URL(string: " "))
+        let serviceProxySpy: ServiceProxySpy<PokemonDetailResponse> = .init()
+        let sut: PokemonWorker = givemSut(serviceProxySpy: serviceProxySpy)
+        serviceProxySpy.resultToBeReturned = .failure(.badRequest)
+        
+        sut.fetchPokemonDetail(url: dummyURL) { result in
+            XCTAssertEqual(result, .failure(.parseError))
+        }
     }
 }
