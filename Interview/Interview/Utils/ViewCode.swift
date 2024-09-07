@@ -11,11 +11,15 @@ protocol ViewCode {
     func setupView()
     func addSubViews()
     func setupConstraints()
+    func setupAdditional()
 }
 
 extension ViewCode {
     func setupView() {
         addSubViews()
         setupConstraints()
+        setupAdditional()
     }
+    
+    func setupAdditional() {}
 }

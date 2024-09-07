@@ -13,4 +13,5 @@ protocol PokemonDetailRow {
     var name: String? { get }
     var weigh: String? { get }
     var imageAsset: String { get }
+    var imageViewAccessibilityLabel: String? { get }
 }

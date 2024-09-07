@@ -30,4 +30,8 @@ struct PokemonDetailAdapter: PokemonDetailRow {
         guard let weigh = detailResponse.weight.toString() else { return nil }
         return "Peso: \(weigh)"
     }
+    
+    var imageViewAccessibilityLabel: String? {
+        return detailResponse.name
+    }
 }

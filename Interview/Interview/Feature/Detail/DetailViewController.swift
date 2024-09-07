@@ -40,7 +40,6 @@ final class DetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.backgroundColor = .systemBackground
-        title = "Detail"
     }
 }
 
@@ -65,6 +64,15 @@ extension DetailViewController: ViewCode {
         
         feedbackView.attach(at: view)
     }
+    
+    func setupAdditional() {
+        imageViewPokemon.isAccessibilityElement = true
+        imageViewPokemon.accessibilityIdentifier = "imageview.detail.pokemon"
+        imageViewPokemon.accessibilityTraits = .button
+        
+        imageViewPokemon.accessibilityTraits.remove(.image)
+        imageViewPokemon.accessibilityTraits.insert(.button)
+    }
 }
 
 extension DetailViewController: DetailViewModelOutput {
@@ -76,6 +84,7 @@ extension DetailViewController: DetailViewModelOutput {
     
     func loadedPokemonInfoWithSuccess(detail: PokemonDetailRow) {
         DispatchQueue.main.async {
+            self.imageViewPokemon.accessibilityLabel = detail.imageViewAccessibilityLabel
             self.pokemonInfoView.fill(detail: detail)
             self.imageViewPokemon.image = .init(named: detail.imageAsset)
             self.feedbackView.dismiss()
