@@ -9,7 +9,15 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false,
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:Interview.xcodeproj",
+          "identifier" : "CB0C63962C2F0AC90089A6A4",
+          "name" : "Interview"
+        }
+      ]
+    },
     "targetForVariableExpansion" : {
       "containerPath" : "container:Interview.xcodeproj",
       "identifier" : "CB0C63962C2F0AC90089A6A4",

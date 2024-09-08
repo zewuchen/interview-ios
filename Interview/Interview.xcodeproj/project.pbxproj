@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		531A990D2C8E2C12005C1721 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A990C2C8E2C12005C1721 /* main.swift */; };
+		531A990F2C8E2D34005C1721 /* TestingAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A990E2C8E2D34005C1721 /* TestingAppDelegate.swift */; };
+		531A99102C8E2D69005C1721 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342D0232C8CD03600CFBC9D /* Logging.swift */; };
 		5342CF972C89BFC100CFBC9D /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CF962C89BFC100CFBC9D /* Endpoint.swift */; };
 		5342CF992C89BFD200CFBC9D /* NetworkerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CF982C89BFD200CFBC9D /* NetworkerError.swift */; };
 		5342CF9B2C89C01E00CFBC9D /* Networker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CF9A2C89C01E00CFBC9D /* Networker.swift */; };
@@ -94,6 +97,8 @@
 
 /* Begin PBXFileReference section */
 		531A990B2C8E2BB1005C1721 /* Interview.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Interview.xctestplan; sourceTree = "<group>"; };
+		531A990C2C8E2C12005C1721 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		531A990E2C8E2D34005C1721 /* TestingAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingAppDelegate.swift; sourceTree = "<group>"; };
 		5342CF962C89BFC100CFBC9D /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		5342CF982C89BFD200CFBC9D /* NetworkerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkerError.swift; sourceTree = "<group>"; };
 		5342CF9A2C89C01E00CFBC9D /* Networker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networker.swift; sourceTree = "<group>"; };
@@ -502,6 +507,8 @@
 			children = (
 				CB0C639A2C2F0AC90089A6A4 /* AppDelegate.swift */,
 				CB0C639C2C2F0AC90089A6A4 /* SceneDelegate.swift */,
+				531A990C2C8E2C12005C1721 /* main.swift */,
+				531A990E2C8E2D34005C1721 /* TestingAppDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -647,6 +654,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5342CFA42C89C33600CFBC9D /* PokemonEndpoint.swift in Sources */,
+				531A990D2C8E2C12005C1721 /* main.swift in Sources */,
 				5342CFCC2C8A00D200CFBC9D /* Constants.swift in Sources */,
 				5342CFF92C8A8C1600CFBC9D /* PokemonInfoView.swift in Sources */,
 				5342D0202C8CB6B100CFBC9D /* URLRequestFactory.swift in Sources */,
@@ -688,6 +696,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5342D0262C8CDA0200CFBC9D /* ServiceProxyTests.swift in Sources */,
+				531A99102C8E2D69005C1721 /* Logging.swift in Sources */,
 				CB0C63B22C2F0ACC0089A6A4 /* InterviewTests.swift in Sources */,
 				5342D0132C8BC35300CFBC9D /* DetailViewModelOutputSpy.swift in Sources */,
 				5342D0282C8CDAC900CFBC9D /* CacheworkerSpy.swift in Sources */,
@@ -708,6 +717,7 @@
 				5342CFD12C8A16FB00CFBC9D /* PokemonWorkerTests.swift in Sources */,
 				5342CFE52C8A5C3900CFBC9D /* PokemonWorkerSpy.swift in Sources */,
 				5342CFE92C8A666600CFBC9D /* MathHelperSpy.swift in Sources */,
+				531A990F2C8E2D34005C1721 /* TestingAppDelegate.swift in Sources */,
 				5342D02A2C8CE0C600CFBC9D /* URLRequestFactoryTests.swift in Sources */,
 				5342CFB32C89C86300CFBC9D /* DummyResponse.swift in Sources */,
 				5342D02E2C8CF50700CFBC9D /* ServiceProxySpy.swift in Sources */,
