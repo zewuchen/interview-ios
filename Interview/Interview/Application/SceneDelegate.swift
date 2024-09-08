@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
 
         let navigation = UINavigationController()
-        coordinator = MainCoordinator(navigation: navigation)
+        coordinator = MainCoordinator(navigation: navigation, pokemonWorker: PokemonWorkerFactory.make())
         coordinator?.start()
         
         window?.rootViewController = navigation
