@@ -59,8 +59,6 @@ final class CacheworkerTests: XCTestCase {
     
     func test_request_whenCachedResponseIsNil_shouldReturnFailure() throws {
         let dummyEndpoint: DummyEndpoint = .init()
-        let dummyURLResponse: URLResponse = .init()
-        let dummyData: Data = try JSONEncoder().encode(DummyResponse(dummy: "dummy"))
         
         mockCache.cachedURLResponseToBeReturned = nil
         
