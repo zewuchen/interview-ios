@@ -1,0 +1,31 @@
+Notas de desenvolvimento
+
+- Factories
+Criei uma factory para PokemonWorker porque é uma camada que é utilizada pelas duas telas do app.
+
+- Environment
+Environment é uma camada com informações mais gerais do aplicativo, nesse caso o host
+
+- Network
+As camadas responsáveis pelas requests separei em 4, foi uma forma que encontrei para manter um pouco da 
+responsabilidade única e facilitar a troca de dependencia futuramente
+    - Networker.swift é camada mais core, hoje ela usa URLSession como motor de requests, mas a ideia é que se necessário possa ser substituido por uma biblioteca como Alamofaire,
+    sem a necessidade de obrigador camadas de cliente a sofrer com alterações.
+    - Cacheworker.swoft é camada responsável por obter dados do cache e salvar novas requests em cache, hoje usando URLCache, mas permitindo que no futuro possa ser alterar para um outro
+    tipo de cache sem obrigar as camadas que implementam a sofrerem grants alterações.
+    - ServiceProxy.swift é uma camada que funciona como um orquestrador, ela que primeiro verifica se existe uma request cacheada, devolvendo a resposta salva, caso contrario delegando
+    a chamada para o serviço remoto.
+
+- PokemonWorker
+É a camada mais expecialista, ela que sabe qual endpoint deve ser chamada para a tela de Main ou a de Detalhe.
+
+- AppDelegate
+    Bypass: Usei uma estrategia de "bypass" do AppDelegate para testes unitarios, isso evita que o código de produção seja executado sempre que os testes são executados. Isso da uma maior rapides
+nos testes, evitando que banco de dados sejam carregados por exemplo. Pra esse projeto do desafio fez sentido, mas dependendo muito da necessidade.
+    TestsUI: Percebi que não é possível fazer o mesmo bypass para os testes de UI, nesse caso tive que identificar se os testes estavam rodando como UI e caso sim, eu troco a injeção 
+    de dependencia do PokemonWorker para PokemonWorkerMock. Isso evita que os tests de UI rodando dependendo de requests de produção, no caso eu estou mockando um cenário de sucesso
+    para a lista e detalhes e sempre vou ter o mesmo resultado para testar os elementos de UI.
+
+- Testes Unitarios
+    Optei por usar bastante os spies, isso permite que eu garante que uma função está sendo executada corretamento, tanto no numero de chamadas quanto nos argumentos. Eu poderia ter melhorado
+    a camada de Spy criando métodos como "verifyArgumentsToNomeDaFunção(args...)" para evitar duplicidade de código nos testes.
