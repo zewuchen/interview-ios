@@ -93,6 +93,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		531A990B2C8E2BB1005C1721 /* Interview.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Interview.xctestplan; sourceTree = "<group>"; };
 		5342CF962C89BFC100CFBC9D /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		5342CF982C89BFD200CFBC9D /* NetworkerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkerError.swift; sourceTree = "<group>"; };
 		5342CF9A2C89C01E00CFBC9D /* Networker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networker.swift; sourceTree = "<group>"; };
@@ -440,6 +441,7 @@
 		CB0C638E2C2F0AC90089A6A4 = {
 			isa = PBXGroup;
 			children = (
+				531A990B2C8E2BB1005C1721 /* Interview.xctestplan */,
 				CB0C63992C2F0AC90089A6A4 /* Interview */,
 				CB0C63B02C2F0ACC0089A6A4 /* InterviewTests */,
 				CB0C63BA2C2F0ACC0089A6A4 /* InterviewUITests */,
