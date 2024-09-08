@@ -17,6 +17,7 @@ final class MainViewController: UIViewController {
         let tableView: UITableView = .init()
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.accessibilityIdentifier = "tableview-main"
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(
             PokemonTableViewCell.self,

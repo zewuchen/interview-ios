@@ -6,36 +6,50 @@
 //
 
 import XCTest
+@testable import Interview
 
 final class InterviewUITests: XCTestCase {
-
+    private let exists = NSPredicate(format: "exists == 1")
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    
+    override func tearDownWithError() throws {}
+    
+    func test_aplication_tapFirstTableViewCell_andShouldExpectedPokemonInformationLabels() throws {
         let app = XCUIApplication()
+        app.launchArguments = ["UITests"]
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+        
+        let mainTableView = app.tables["tableview-main"]
+        
+        let firstTableCell = mainTableView.cells.firstMatch
+        
+        // wait for data loading and firstTableCell available
+        let expectationFirstCell = expectation(for: exists, evaluatedWith: firstTableCell)
+        wait(for: [expectationFirstCell], timeout: 3)
+        
+        XCTAssertTrue(firstTableCell.exists, "cell 0 is not on the table")
+        
+        expectationFirstCell.fulfill()
+        
+        firstTableCell.tap()
+        
+        let labelName = app.staticTexts["label-detail-name"]
+        let labelNumber = app.staticTexts["label-detail-number"]
+        let labelHeight = app.staticTexts["label-detail-height"]
+        let labelWeight = app.staticTexts["label-detail-weight"]
+        
+        
+        XCTAssertTrue(labelName.exists, "labelName is not on the controller")
+        XCTAssertTrue(labelNumber.exists, "labelNumber is not on the controller")
+        XCTAssertTrue(labelHeight.exists, "labelHeight is not on the controller")
+        XCTAssertTrue(labelWeight.exists, "labelWeight is not on the controller")
+        
+        XCTAssertEqual(labelName.label, "Nome: Mock Pokemon Name 1")
+        XCTAssertEqual(labelNumber.label, "Número: 123")
+        XCTAssertEqual(labelHeight.label, "Altura: 70")
+        XCTAssertEqual(labelWeight.label, "Peso: 55")
     }
 }

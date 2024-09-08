@@ -20,8 +20,8 @@
     },
     "targetForVariableExpansion" : {
       "containerPath" : "container:Interview.xcodeproj",
-      "identifier" : "CB0C63962C2F0AC90089A6A4",
-      "name" : "Interview"
+      "identifier" : "CB0C63B62C2F0ACC0089A6A4",
+      "name" : "InterviewUITests"
     }
   },
   "testTargets" : [
@@ -30,6 +30,13 @@
         "containerPath" : "container:Interview.xcodeproj",
         "identifier" : "CB0C63AC2C2F0ACC0089A6A4",
         "name" : "InterviewTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Interview.xcodeproj",
+        "identifier" : "CB0C63B62C2F0ACC0089A6A4",
+        "name" : "InterviewUITests"
       }
     }
   ],

@@ -17,7 +17,20 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
 
         let navigation = UINavigationController()
-        coordinator = MainCoordinator(navigation: navigation, pokemonWorker: PokemonWorkerFactory.make())
+        
+        var pokemonWorker: PokemonWorkerProtocol = PokemonWorkerFactory.make()
+        
+        #if DEBUG
+        let isRunningTests: Bool = ProcessInfo.processInfo.arguments.contains("UITests")
+        if isRunningTests {
+            pokemonWorker = PokemonWorkerMock()
+        }
+        #endif
+        
+        coordinator = MainCoordinator(
+            navigation: navigation,
+            pokemonWorker: pokemonWorker
+        )
         coordinator?.start()
         
         window?.rootViewController = navigation

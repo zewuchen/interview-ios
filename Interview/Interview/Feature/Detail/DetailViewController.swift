@@ -17,6 +17,7 @@ final class DetailViewController: UIViewController {
     private lazy var imageViewPokemon: UIImageView = {
         let imageView: UIImageView = .init()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.accessibilityIdentifier = "imageview-detail"
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()

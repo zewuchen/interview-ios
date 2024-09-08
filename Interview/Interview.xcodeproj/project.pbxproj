@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		531A990D2C8E2C12005C1721 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A990C2C8E2C12005C1721 /* main.swift */; };
-		531A990F2C8E2D34005C1721 /* TestingAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A990E2C8E2D34005C1721 /* TestingAppDelegate.swift */; };
 		531A99102C8E2D69005C1721 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342D0232C8CD03600CFBC9D /* Logging.swift */; };
+		531A99132C8E3283005C1721 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342D0232C8CD03600CFBC9D /* Logging.swift */; };
+		531A99142C8E34CD005C1721 /* TestingAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A990E2C8E2D34005C1721 /* TestingAppDelegate.swift */; };
+		531A991C2C8E3A37005C1721 /* PokemonWorkerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A99192C8E3A01005C1721 /* PokemonWorkerMock.swift */; };
 		5342CF972C89BFC100CFBC9D /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CF962C89BFC100CFBC9D /* Endpoint.swift */; };
 		5342CF992C89BFD200CFBC9D /* NetworkerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CF982C89BFD200CFBC9D /* NetworkerError.swift */; };
 		5342CF9B2C89C01E00CFBC9D /* Networker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342CF9A2C89C01E00CFBC9D /* Networker.swift */; };
@@ -68,7 +70,6 @@
 		5342D02C2C8CE1A000CFBC9D /* CacheworkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342D02B2C8CE1A000CFBC9D /* CacheworkerTests.swift */; };
 		5342D02E2C8CF50700CFBC9D /* ServiceProxySpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342D02D2C8CF50700CFBC9D /* ServiceProxySpy.swift */; };
 		5342D02F2C8CF87400CFBC9D /* InterviewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C63BB2C2F0ACC0089A6A4 /* InterviewUITests.swift */; };
-		5342D0302C8CF87700CFBC9D /* InterviewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C63BD2C2F0ACC0089A6A4 /* InterviewUITestsLaunchTests.swift */; };
 		CB0C639B2C2F0AC90089A6A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C639A2C2F0AC90089A6A4 /* AppDelegate.swift */; };
 		CB0C639D2C2F0AC90089A6A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C639C2C2F0AC90089A6A4 /* SceneDelegate.swift */; };
 		CB0C639F2C2F0AC90089A6A4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C639E2C2F0AC90089A6A4 /* MainViewController.swift */; };
@@ -99,6 +100,7 @@
 		531A990B2C8E2BB1005C1721 /* Interview.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Interview.xctestplan; sourceTree = "<group>"; };
 		531A990C2C8E2C12005C1721 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		531A990E2C8E2D34005C1721 /* TestingAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingAppDelegate.swift; sourceTree = "<group>"; };
+		531A99192C8E3A01005C1721 /* PokemonWorkerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonWorkerMock.swift; sourceTree = "<group>"; };
 		5342CF962C89BFC100CFBC9D /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		5342CF982C89BFD200CFBC9D /* NetworkerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkerError.swift; sourceTree = "<group>"; };
 		5342CF9A2C89C01E00CFBC9D /* Networker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networker.swift; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 				CB0C639C2C2F0AC90089A6A4 /* SceneDelegate.swift */,
 				531A990C2C8E2C12005C1721 /* main.swift */,
 				531A990E2C8E2D34005C1721 /* TestingAppDelegate.swift */,
+				531A99192C8E3A01005C1721 /* PokemonWorkerMock.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				5342D0022C8B4D3800CFBC9D /* FeedbackView.swift in Sources */,
 				5342D0192C8BCC5000CFBC9D /* PokemonWorkerFactory.swift in Sources */,
 				5342D01C2C8BCDC200CFBC9D /* MainCoordinator.swift in Sources */,
+				531A991C2C8E3A37005C1721 /* PokemonWorkerMock.swift in Sources */,
 				5342CFC02C89CEB800CFBC9D /* MainViewModel.swift in Sources */,
 				5342CFA02C89C2DB00CFBC9D /* PokemonWorker.swift in Sources */,
 				5342CFF02C8A74B000CFBC9D /* DetailViewModel.swift in Sources */,
@@ -710,6 +714,7 @@
 				5342CFAC2C89C64600CFBC9D /* NetworkerTests.swift in Sources */,
 				5342CFE72C8A5F8E00CFBC9D /* MainViewModelOutputSpy.swift in Sources */,
 				5342CFD32C8A173700CFBC9D /* NetworkerSpy.swift in Sources */,
+				531A99142C8E34CD005C1721 /* TestingAppDelegate.swift in Sources */,
 				5342D0112C8BC02D00CFBC9D /* PokemonRowBackgroundUseCaseTests.swift in Sources */,
 				5342CFB92C89CA3D00CFBC9D /* HTTPMethodTests.swift in Sources */,
 				5342CFD52C8A179400CFBC9D /* EnvironmentStub.swift in Sources */,
@@ -717,7 +722,6 @@
 				5342CFD12C8A16FB00CFBC9D /* PokemonWorkerTests.swift in Sources */,
 				5342CFE52C8A5C3900CFBC9D /* PokemonWorkerSpy.swift in Sources */,
 				5342CFE92C8A666600CFBC9D /* MathHelperSpy.swift in Sources */,
-				531A990F2C8E2D34005C1721 /* TestingAppDelegate.swift in Sources */,
 				5342D02A2C8CE0C600CFBC9D /* URLRequestFactoryTests.swift in Sources */,
 				5342CFB32C89C86300CFBC9D /* DummyResponse.swift in Sources */,
 				5342D02E2C8CF50700CFBC9D /* ServiceProxySpy.swift in Sources */,
@@ -732,8 +736,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5342D0302C8CF87700CFBC9D /* InterviewUITestsLaunchTests.swift in Sources */,
 				5342D02F2C8CF87400CFBC9D /* InterviewUITests.swift in Sources */,
+				531A99132C8E3283005C1721 /* Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -995,6 +999,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.InterviewUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1012,6 +1017,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.InterviewUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

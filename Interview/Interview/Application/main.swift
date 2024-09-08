@@ -8,13 +8,11 @@
 import Foundation
 import UIKit
 
-func getAplicationDelegateFromMainTargetOrTestingTarget() -> AnyClass {
-    return NSClassFromString("TestingAppDelegate") ?? AppDelegate.self
-}
+let appDelegateClass: AnyClass = NSClassFromString("TestingAppDelegate") ?? AppDelegate.self
 
 UIApplicationMain(
     CommandLine.argc,
     CommandLine.unsafeArgv,
     nil,
-    NSStringFromClass(getAplicationDelegateFromMainTargetOrTestingTarget())
+    NSStringFromClass(appDelegateClass)
 )

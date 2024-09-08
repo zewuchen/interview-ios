@@ -46,6 +46,11 @@ extension PokemonInfoView: ViewCode {
         stackViewContainer.addArrangedSubview(labelNumber)
         stackViewContainer.addArrangedSubview(labelHeight)
         stackViewContainer.addArrangedSubview(labelWeight)
+        
+        labelName.accessibilityIdentifier = "label-detail-name"
+        labelNumber.accessibilityIdentifier = "label-detail-number"
+        labelHeight.accessibilityIdentifier = "label-detail-height"
+        labelWeight.accessibilityIdentifier = "label-detail-weight"
     }
     
     func setupConstraints() {
