@@ -12,7 +12,9 @@ Neste repo, você encontrará um projeto pré-pronto para iniciar o desafio, ond
 
 O desafio consiste em criar duas telas simples, preenchendo o contéudo com o consumo de uma API, que neste caso, será a de [Pokémon](https://pokeapi.co/docs/v2).
 
-Comece realizando um fork deste repositório para sua conta, realize as modificações e abra um Pull Request de volta para que seja analisado. Ao abrir, deverá conter duas screenshots, uma de cada tela. Boa sorte!!!
+Comece realizando um fork deste repositório para sua conta, realize as modificações e abra um Pull Request de volta para que seja analisado. Adicione informações na descrição do PR caso você queira explicar algo relevante.
+
+*Não é necessário ter um MAC para o desafio, faça em um editor online ou no próprio VSCode do Windows caso queira!*
 
 ## 1. MainViewController
 
