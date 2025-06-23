@@ -7,16 +7,32 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    private var coordinator: Coordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
         window = UIWindow(windowScene: windowScene)
 
-        let controller = MainViewController()
-        let navigation = UINavigationController(rootViewController: controller)
+        let navigation = UINavigationController()
+        
+        var pokemonWorker: PokemonWorkerProtocol = PokemonWorkerFactory.make()
+        
+        #if DEBUG
+        let isRunningTests: Bool = ProcessInfo.processInfo.arguments.contains("UITests")
+        if isRunningTests {
+            pokemonWorker = PokemonWorkerMock()
+        }
+        #endif
+        
+        coordinator = MainCoordinator(
+            navigation: navigation,
+            pokemonWorker: pokemonWorker
+        )
+        coordinator?.start()
+        
         window?.rootViewController = navigation
         window?.makeKeyAndVisible()
     }
